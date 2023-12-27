@@ -41,23 +41,23 @@ export default function SearchButton() {
             </defs>
           </svg>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-[350px] text-base">
+        <DropdownMenuContent className="w-[350px] text-base bg-[#E8EDF5] dark:bg-[#E8EDF5]">
           <DropdownMenuGroup>
             <form>
               <div className="relative">
                 <input
                   type="text"
                   id="default-search"
-                  className="block w-full pl-3 h-[50px] placeholder-[#7E9CC7] bg-gray-50 dark:bg-gray-600 text-base border border-gray-500 rounded-lg focus:outline-none"
+                  className="block w-full pl-3 pr-8 h-[50px] placeholder-[#7E9CC7] dark:bg-gray-600 text-sm rounded-[8px] focus:outline-none"
                   placeholder="Search"
                   required
                 />
                 <button
                   type="submit"
-                  className="absolute end-2.5 bottom-[11px]"
+                  className="absolute end-2.5 bottom-[14px]"
                 >
                   <svg
-                    className="w-6 h-6 text-[#7E9CC7] dark:text-gray-400"
+                    className="w-5 h-5 text-[#7E9CC7] dark:text-gray-400"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -75,9 +75,8 @@ export default function SearchButton() {
               </div>
             </form>
           </DropdownMenuGroup>
-          <DropdownMenuSeparator />
-          <div className="pt-4">
-            <p>Popular tags:</p>
+          <div className="pt-5">
+            <p className="text-sm">Popular tags:</p>
             <div className="flex flex-wrap gap-2.5 text-xs text-[#7E9CC7] pt-3">
               {["Travel", "Tech", "Movie", "Lifestyle", "Sport"].map(
                 (value) => (

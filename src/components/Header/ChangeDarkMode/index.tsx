@@ -22,7 +22,7 @@ export default function ChangeDarkMode() {
   }, []);
 
   return (
-    <div className="me-5">
+    <div className="flex justify-center items-center me-3 lg:me-5">
       <Switch
         ref={switchRef}
         onCheckedChange={() => handleThemeChange(!isDark)}
