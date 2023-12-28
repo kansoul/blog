@@ -55,7 +55,7 @@ export default function HotTopic() {
   ];
 
   return (
-    <div className="mb-[70px]">
+    <div className="mb-[70px] animate__animated animate__fadeInUp relative z-10">
       <div className="flex p-6 border rounded-[8px] border-[#C2D4EE] bg-[#E8EDF5] dark:bg-[#131C31] dark:border-[#222F43]">
         <div className="w-2/12">
           <p className="text-[#344161] dark:text-[#B9E0F2] text-[20px] font-bold pb-[14px]">
@@ -89,7 +89,7 @@ export default function HotTopic() {
               {hostTopics.map((value, index) => (
                 <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">
                   <div className="m-2 w-[200px] h-[250px] cursor-pointer relative rounded-md overflow-hidden">
-                    <div className="card-info z-10 rounded-md peer">
+                    <div className="card-info z-20 peer">
                       <div className="absolute bottom-0 left-0 p-[15px] text-left">
                         <h6 className="text-[#F9FBFF] dark:text-[#B9E0F2] mb-2 text-base font-bold">
                           {value.tag}
@@ -105,7 +105,7 @@ export default function HotTopic() {
                       width="0"
                       height="0"
                       sizes="100vw"
-                      className="object-cover rounded-md w-full h-full transform transition-transform duration-300 peer-hover:scale-110"
+                      className="object-cover w-full h-full transform transition-transform duration-300 peer-hover:scale-110"
                     />
                   </div>
                 </CarouselItem>

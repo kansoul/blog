@@ -6,14 +6,14 @@ import Image from "next/image";
 
 export default function Introduce() {
   return (
-    <div className="flex items-end pt-[100px] px-1">
-      <div className="animate__fadeInUp pt-[50px] w-1/2 ">
+    <div className="flex items-end pt-[100px] px-1 relative z-[1]">
+      <div className="animate__animated animate__fadeInUp pt-[50px] w-1/2 ">
         <p className="text-[#7E9CC7] dark:text-[#7F92B0] text-sm font-bold">
           Hello Everyone!
         </p>
         <h1 className="text-[#344161] dark:text-[#E6F0FF] py-5 min-h-[214px]">
           I&apos;m
-          <div className="text-transparent bg-clip-text bg-gradient-to-r from-[#0ea5ea] from-10% via-[#0bd1d1] via-30% to-[#0ea5ea] to-95%">
+          <div className="text-transparent text-linear">
             <Typewriter
               options={{
                 strings: ["Hồ Đoan", "Developer"],
@@ -34,9 +34,9 @@ export default function Introduce() {
           <form>
             <div className="flex ">
               <input
-                type="search"
+                type="text"
                 id="default-search"
-                className="block w-[calc(100%-95px)] h-10 text-sm text-gray-900 focus:outline-none bg-transparent"
+                className="block w-[calc(100%-95px)] h-10 text-sm text-[#7f92b0] focus:outline-none bg-transparent"
                 placeholder="Type your email address"
                 required
               />

@@ -157,6 +157,13 @@ html body {
   }
 }
 
+.text-linear {
+  background: linear-gradient(90deg, #0EA5EA 0%, #0BD1D1 51%, #0EA5EA 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 h1 {
   font-size: 64px;
   font-weight: 800;
@@ -169,7 +176,7 @@ h1 {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 9;
+    z-index: 99;
     left: 0;
     transition: all 0.3s linear;
     padding-top: 0;
@@ -188,7 +195,6 @@ header > nav {
 .color-home:after, .color-home:before {
   width: 500px;
   content: "";
-  z-index: 1;
   position: absolute;
 }
 
@@ -196,6 +202,7 @@ header > nav {
   height: 800px;
   background: url(/color-left.svg) no-repeat 100% 0;
   left: 0;
+  z-index: 0;
   top: 0;
 }
 
@@ -219,8 +226,29 @@ header > nav {
   }
 }
 
+@media (prefers-reduced-motion: reduce), print {
+  .animate__animated {
+      animation-duration: 1ms!important;
+      transition-duration: 1ms!important;
+      animation-iteration-count: 1!important;
+  }
+}
+.animate__animated {
+    animation-duration: 1s;
+    animation-duration: var(--animate-duration);
+    animation-fill-mode: both;
+}
+
 .animate__fadeInUp {
   animation-name: fadeInUp
+}
+
+.card {
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
 }
 
 .bg-avatar {
@@ -237,7 +265,7 @@ header > nav {
   width: 500px;
   background: url(/color-bg-avatar.svg) no-repeat 50%;
   background-size: contain;
-  z-index: 0
+  z-index: 1
 }
 
 .bg-avatar .icon-1 {
@@ -284,6 +312,6 @@ header > nav {
   bottom: 0;
   height: 100%;
   width: 100%;
-  border-radius: 8px;
+  border-radius: 6px;
   background: url(/bg_card.png) repeat-x 0 100%;
 }
