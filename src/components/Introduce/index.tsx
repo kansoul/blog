@@ -47,7 +47,7 @@ export default function Introduce() {
           </form>
         </div>
       </div>
-      <div className="w-1/2 flex justify-center items-end bg-avatar">
+      <div className="w-1/2 animate__animated animate__fadeIn flex justify-center items-end bg-avatar">
         <Image
           alt="Avatar"
           src="/images/avatar.png"

@@ -8,7 +8,7 @@ export default function useScrollHeader() {
       if (scrollTop > 100) {
         setScrolling(true);
       }
-      if (scrollTop === 0) setScrolling(false);
+      if (scrollTop < 15) setScrolling(false);
     };
 
     window.addEventListener("scroll", handleScroll);

@@ -58,10 +58,10 @@ export default function HotTopic() {
     <div className="mb-[70px] animate__animated animate__fadeInUp relative z-10">
       <div className="flex p-6 border rounded-[8px] border-[#C2D4EE] bg-[#E8EDF5] dark:bg-[#131C31] dark:border-[#222F43]">
         <div className="w-2/12">
-          <p className="text-[#344161] dark:text-[#B9E0F2] text-[20px] font-bold pb-[14px]">
+          <p className="text-[#344161] dark:text-[#B9E0F2] text-[20px] font-bold pb-[14px] animate__animated animate__fadeInUp">
             Hot topics
           </p>
-          <p className="text-[#708AB0] dark:text-[#94A9C9] text-[14px] font-normal">
+          <p className="text-[#708AB0] dark:text-[#94A9C9] text-[14px] font-normal animate__animated animate__fadeInUp">
             Don&apos;t miss out on the latest news about Travel tips, Hotels
             review, Food guide...
           </p>
@@ -70,7 +70,7 @@ export default function HotTopic() {
             src="/icons/hand.svg"
             width={100}
             height={100}
-            className="pl-6"
+            className="pl-6 animate__animated animate__zoomIn"
           />
         </div>
         <div className="w-10/12">

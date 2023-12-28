@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import HotTopic from "@/components/HotTopic";
 import Introduce from "@/components/Introduce";
 import PopularTag from "@/components/PopularTag";
+import "animate.css";
 
 export default function Home() {
   return (

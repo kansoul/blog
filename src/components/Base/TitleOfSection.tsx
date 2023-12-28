@@ -5,7 +5,7 @@ interface TitleOfSectionProps {
 
 export default function TitleOfSection(props: TitleOfSectionProps) {
   return (
-    <div className="mb-[70px]">
+    <div className="mb-[70px] animate__animated animate__fadeInUp">
       <h1 className="mb-1.5 text-[45px] text-transparent text-linear">
         {props.mainTitle}
       </h1>
