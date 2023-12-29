@@ -42,7 +42,7 @@ export default function EditorPicker() {
       <div className="w-full flex flex-wrap items-center justify-center gap-5">
         {cardTemps.map(({ cardTag, cardTitle, srcImage, isHot }, index) => (
           <CardBlog
-            key={index}
+            key={`Card blog ${index}`}
             cardTag={cardTag}
             cardTitle={cardTitle}
             srcImage={srcImage}

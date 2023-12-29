@@ -39,12 +39,13 @@ export default function Footer() {
                 "Business",
                 "Dental",
               ].map((val) => (
-                <p
+                <a
                   key={val}
-                  className="w-1/2 text-base text-[#708AB0] dark:text-[#94A9C9]"
+                  href="#"
+                  className="w-1/2 text-base text-[#708AB0] dark:text-[#94A9C9] hover:text-[#0ea5ea] hover:translate-x-2 transition-transform duration-300 ease-in-out"
                 >
                   {val}
-                </p>
+                </a>
               ))}
             </div>
           </div>

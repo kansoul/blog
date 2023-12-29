@@ -87,7 +87,10 @@ export default function HotTopic() {
           >
             <CarouselContent>
               {hostTopics.map((value, index) => (
-                <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">
+                <CarouselItem
+                  key={`Carouse ${index}`}
+                  className="md:basis-1/3 lg:basis-1/4"
+                >
                   <div className="m-2 w-[200px] h-[250px] cursor-pointer relative rounded-md overflow-hidden">
                     <div className="card-info z-20 peer">
                       <div className="absolute bottom-0 left-0 p-[15px] text-left">
