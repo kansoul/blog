@@ -38,9 +38,9 @@ export default function Footer() {
                 "Animal",
                 "Business",
                 "Dental",
-              ].map((val) => (
+              ].map((val, index) => (
                 <a
-                  key={val}
+                  key={val + index}
                   href="#"
                   className="w-1/2 text-base text-[#708AB0] dark:text-[#94A9C9] hover:text-[#0ea5ea] hover:translate-x-2 transition-transform duration-300 ease-in-out"
                 >

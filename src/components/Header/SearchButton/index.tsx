@@ -41,7 +41,7 @@ export default function SearchButton() {
             </defs>
           </svg>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-[350px] text-base bg-[#E8EDF5] dark:bg-[#E8EDF5]">
+        <DropdownMenuContent className="w-[350px] text-base bg-[#E8EDF5] dark:bg-[#E8EDF5] z-[99]">
           <DropdownMenuGroup>
             <form>
               <div className="relative">

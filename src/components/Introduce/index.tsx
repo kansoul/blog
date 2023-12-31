@@ -16,7 +16,7 @@ export default function Introduce() {
           <div className="text-transparent text-linear">
             <Typewriter
               options={{
-                strings: ["Hồ Đoan", "Developer"],
+                strings: ["Ho Doan", "Developer"],
                 autoStart: true,
                 loop: true,
               }}

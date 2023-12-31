@@ -13,42 +13,106 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import Image from "next/image";
 
-const components: { title: string; href: string; description: string }[] = [
+const blogComponents: { title: string; href: string; description: string }[] = [
   {
-    title: "Alert Dialog",
+    title: "ReactJS",
     href: "/docs/primitives/alert-dialog",
     description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+      "Powerful JavaScript library for building user interfaces with seamless interactions.",
   },
   {
-    title: "Hover Card",
+    title: "NextJS",
     href: "/docs/primitives/hover-card",
     description:
-      "For sighted users to preview content available behind a link.",
+      "Efficiently preview content for sighted users behind links with NextJS.",
   },
   {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Scroll-area",
+    title: "Laravel",
     href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
+    description:
+      "Visually and semantically separate content using the Laravel framework.",
   },
   {
-    title: "Tabs",
+    title: "Flutter",
     href: "/docs/primitives/tabs",
     description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+      "Create visually stunning cross-platform mobile apps with Flutter's layered content.",
   },
   {
-    title: "Tooltip",
+    title: "Frameworks CSS",
     href: "/docs/primitives/tooltip",
     description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+      "Easily design and style your projects with powerful frameworks.",
+  },
+  {
+    title: "See more",
+    href: "/docs/primitives/tooltip",
+    description:
+      "Explore additional resources and documentation for expanding your knowledge.",
+  },
+];
+
+const resourcesComponents: {
+  title: string;
+  href: string;
+  description: string;
+}[] = [
+  {
+    title: "Tools and Languages",
+    href: "/docs/primitives/alert-dialog",
+    description:
+      "Explore essential tools and programming languages to enhance your development workflow.",
+  },
+  {
+    title: "Libraries and Frameworks",
+    href: "/docs/primitives/hover-card",
+    description:
+      "Discover libraries and frameworks providing a visual preview for enriched content experiences.",
+  },
+  {
+    title: "Programming Communities",
+    href: "/docs/primitives/scroll-area",
+    description:
+      "Connect with like-minded individuals in visually and semantically diverse programming communities.",
+  },
+  {
+    title: "Books and Documentation",
+    href: "/docs/primitives/tabs",
+    description:
+      "Access a curated collection of layered content, organized into tab panels for efficient exploration.",
+  },
+];
+
+const servicesComponents: {
+  title: string;
+  href: string;
+  description: string;
+}[] = [
+  {
+    title: "Website Development",
+    href: "/docs/primitives/alert-dialog",
+    description:
+      "Crafting dynamic and responsive websites for a seamless user experience.",
+  },
+  {
+    title: "Web Application Development",
+    href: "/docs/primitives/hover-card",
+    description:
+      "Building interactive web applications with modern frameworks.",
+  },
+  {
+    title: "Flutter App Development",
+    href: "/docs/primitives/scroll-area",
+    description:
+      "Creating visually stunning cross-platform mobile apps using Flutter.",
+  },
+  {
+    title: "SEO and Advertisement",
+    href: "/docs/primitives/tabs",
+    description:
+      "Optimizing online visibility through SEO and managing effective ad campaigns.",
   },
 ];
 
@@ -73,78 +137,88 @@ export function NavigationMenuDemo() {
                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                     href="/"
                   >
+                    <Image
+                      src="/images/avatar.png"
+                      alt="Avatar"
+                      width={230}
+                      height={230}
+                      sizes="100vw"
+                      className="object-cover"
+                    />
                     <div className="mb-2 mt-4 text-lg font-medium">
-                      shadcn/ui
+                      HoDoanIT
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
-                      Beautifully designed components built with Radix UI and
-                      Tailwind CSS.
+                      About me
                     </p>
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/docs" title="Introduction">
-                Re-usable components built using Radix UI and Tailwind CSS.
+              <ListItem href="/docs" title="About me">
+                Introducing myself and my inspiration for working.
               </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
+              <ListItem
+                href="/docs/installation"
+                title="Programming Experience"
+              >
+                The process of learning and using programming languages.
               </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Typography">
-                Styles for headings, paragraphs, lists...etc
+              <ListItem href="/docs/primitives/typography" title="Projects">
+                Summary of projects that I have just gone through.
               </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Category</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Blogs</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
+              {blogComponents.map((value) => (
                 <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
+                  key={value.title}
+                  title={value.title}
+                  href={value.href}
                 >
-                  {component.description}
+                  {value.description}
                 </ListItem>
               ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Single Post</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
+              {resourcesComponents.map((value) => (
                 <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
+                  key={value.title}
+                  title={value.title}
+                  href={value.href}
                 >
-                  {component.description}
+                  {value.description}
                 </ListItem>
               ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Pages</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Services</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {components.map((component) => (
+              {servicesComponents.map((value) => (
                 <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
+                  key={value.title}
+                  title={value.title}
+                  href={value.href}
                 >
-                  {component.description}
+                  {value.description}
                 </ListItem>
               ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
+          <Link href="/contact" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               Contact
             </NavigationMenuLink>
