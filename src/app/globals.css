@@ -202,6 +202,16 @@ header > nav {
   top: 700px;
 }
 
+.color-404:before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  background: url(/color-404.svg) no-repeat bottom 100% right 0;
+  z-index: 1;
+}
+
 .card {
   transition: transform 0.3s ease-in-out;
 }

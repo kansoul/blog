@@ -3,8 +3,8 @@ import ButtonLiner from "../ui/button-liner";
 
 export default function Footer() {
   return (
-    <div className="w-full">
-      <div className="container mx-auto h-[573px] border bg-[#E8EDF5] dark:bg-[#131C31] rounded-[48px] border-[#C2D4EE] dark:border-[#222F43] mt-[80px] mb-6 pt-[90px] !px-[107px] pb-[51px]">
+    <footer className="w-full relative z-[10]">
+      <div className="container mx-auto h-[573px] border bg-[#E8EDF5] dark:bg-[#131C31] rounded-[48px] border-[#C2D4EE] dark:border-[#222F43] mt-[80px] pt-[90px] !px-[107px] pb-[51px]">
         <div className="flex flex-wrap pb-[54px] border-b border-[#708AB0] dark:border-[#94A9C9]">
           <div className="w-1/3 p-3">
             <Logo size="L" />
@@ -204,6 +204,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }

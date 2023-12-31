@@ -26,12 +26,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="bg-[#F9FBFF] dark:bg-[#0F172A]">
+          <main className="bg-[#F9FBFF] dark:bg-[#0F172A] pb-6">
             <Header />
-            <div className="container flex flex-row color-home">
-              <div className="w-0 xl:w-1/12"></div>
-              <div className="w-full xl:w-10/12">{children}</div>
-            </div>
+            {children}
             <Footer />
           </main>
         </ThemeProvider>

@@ -11,7 +11,7 @@ import Logo from "../Base/Logo";
 export default function Header() {
   const scrolling = useScrollHeader();
   return (
-    <header className="h-[105px]">
+    <header className="h-[105px] relative z-50">
       <div
         className={`bg-[#F9FBFF] dark:bg-[#0F172A] pt-[15px] ${
           scrolling

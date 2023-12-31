@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Logo(props: { size: "L" | "XL" }) {
   const sizeOfLogo = {
@@ -14,8 +15,11 @@ export default function Logo(props: { size: "L" | "XL" }) {
     },
   };
   return (
-    <div
-      className={`w-full flex items-center ${sizeOfLogo[props.size]["width"]}`}
+    <Link
+      href="/"
+      className={`w-full flex items-center cursor-pointer ${
+        sizeOfLogo[props.size]["width"]
+      }`}
     >
       <Image
         src="/logo.svg"
@@ -23,13 +27,13 @@ export default function Logo(props: { size: "L" | "XL" }) {
         height={sizeOfLogo[props.size]["imageSize"]}
         alt="HoDoanIT Logo"
       />
-      <span
-        className={`self-center text-xl font-black text-gray-500 whitespace-nowrap dark:text-white ml-1 ${
+      <p
+        className={`self-center text-xl font-black text-[#4a576a] whitespace-nowrap dark:text-[#d8e6fb] ml-1 ${
           sizeOfLogo[props.size]["textSize"]
         }`}
       >
-        DoanIT
-      </span>
-    </div>
+        HoDoanIT
+      </p>
+    </Link>
   );
 }
