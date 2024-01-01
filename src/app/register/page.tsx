@@ -2,16 +2,24 @@ import ButtonLiner from "@/components/ui/button-liner";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Login() {
+export default function Register() {
   return (
     <div className="mx-auto text-center flex flex-col items-center relative">
-      <p className="text-linear text-[45px] font-bold my-[50px]">
-        Welcome back !
-      </p>
+      <p className="text-linear text-[45px] font-bold my-[50px]">Register</p>
       <form
         action=""
         className="w-full max-w-[420px] flex flex-col border border-[#c2d4ee] dark:border-[#222f43] bg-[#e8edf5] dark:bg-[#131c31] rounded-[16px] p-[30px] mb-"
       >
+        <input
+          type="text"
+          className="placeholder-[#7E9CC7] bg-transparent border border-[#c2d4ee] dark:border-[#222f43]  text-sm rounded-[8px] focus:outline-none p-5 mb-6 dark:focus:border-[#66768f] "
+          placeholder="Full name"
+        />
+        <input
+          type="email"
+          className="placeholder-[#7E9CC7] bg-transparent border border-[#c2d4ee] dark:border-[#222f43]  text-sm rounded-[8px] focus:outline-none p-5 mb-6 dark:focus:border-[#66768f] "
+          placeholder="Email"
+        />
         <input
           type="text"
           className="placeholder-[#7E9CC7] bg-transparent border border-[#c2d4ee] dark:border-[#222f43]  text-sm rounded-[8px] focus:outline-none p-5 mb-6 dark:focus:border-[#66768f] "
@@ -22,22 +30,24 @@ export default function Login() {
           className="placeholder-[#7E9CC7] bg-transparent border border-[#c2d4ee] dark:border-[#222f43]  text-sm rounded-[8px] focus:outline-none p-5 mb-6 dark:focus:border-[#66768f]"
           placeholder="Password"
         />
-        <p className="text-sm text-[#344161] dark:text-[#b9e0f2] text-left mb-6">
-          Forgot password?
-        </p>
+        <input
+          type="password"
+          className="placeholder-[#7E9CC7] bg-transparent border border-[#c2d4ee] dark:border-[#222f43]  text-sm rounded-[8px] focus:outline-none p-5 mb-6 dark:focus:border-[#66768f]"
+          placeholder="Confirm password"
+        />
         <ButtonLiner className="w-full !py-3 hover:-translate-y-1 transition-transform duration-300 ease-in-out ">
-          Login
+          Create a account
         </ButtonLiner>
         <div className="text-sm text-left text-[#94A9C9] mt-6">
-          <span className="">Don’t have an account? </span>
-          <Link href="/register" className="text-linear">
-            Sign Up
+          <span className="">Already have an account? </span>
+          <Link href={"/login"} className="text-linear">
+            Sign In
           </Link>
         </div>
       </form>
       <div className="relative mx-auto my-[30px] w-full max-w-[420px] before:content-[''] before:w-[90%] before:h-[2px] before:bg-[#222f43] before:absolute before:top-[10px] before:left-0 before:right-0 before:z-1 before:mx-auto">
         <span className="relative -top-0.5 z-[2] py-[5px] px-2.5 bg-[#f9fbff] dark:bg-[#0f172a] text-[#94A9C9] text-sm">
-          Or, sign in with your email
+          Or, sign up with your email
         </span>
       </div>
       <div className="flex items-center justify-center w-full max-w-[420px]">
@@ -51,7 +61,7 @@ export default function Login() {
             height={6}
           />
           <span className="text-[#344161] dark:text-[#b9e0f2]">
-            Login with Google
+            Sign up with Google
           </span>
         </button>
       </div>

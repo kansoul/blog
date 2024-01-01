@@ -7,6 +7,7 @@ import SearchButton from "./SearchButton";
 import useScrollHeader from "@/hooks/useScrollHeader";
 import ButtonLiner from "../ui/button-liner";
 import Logo from "../Base/Logo";
+import Link from "next/link";
 
 export default function Header() {
   const scrolling = useScrollHeader();
@@ -27,7 +28,9 @@ export default function Header() {
           <div className="flex items-end justify-end lg:items-center w-full max-w-[225px] lg:order-2">
             <SearchButton />
             <ChangeDarkMode />
-            <ButtonLiner className="hidden lg:block">Login</ButtonLiner>
+            <Link href={"/login"}>
+              <ButtonLiner className="hidden lg:block">Login</ButtonLiner>
+            </Link>
           </div>
         </div>
       </div>

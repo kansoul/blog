@@ -8,8 +8,12 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "HoDoanIT",
+  title: "Ho Doan IT",
+  metadataBase: new URL("https://www.hodoanit.com/"),
   description: "Basic to advanced programming knowledge",
+  openGraph: {
+    images: "/images/avatar.png",
+  },
 };
 
 export default function RootLayout({
