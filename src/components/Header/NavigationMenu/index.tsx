@@ -18,37 +18,37 @@ import Image from "next/image";
 const blogComponents: { title: string; href: string; description: string }[] = [
   {
     title: "ReactJS",
-    href: "/docs/primitives/alert-dialog",
+    href: "/category",
     description:
       "Powerful JavaScript library for building user interfaces with seamless interactions.",
   },
   {
     title: "NextJS",
-    href: "/docs/primitives/hover-card",
+    href: "/category",
     description:
       "Efficiently preview content for sighted users behind links with NextJS.",
   },
   {
     title: "Laravel",
-    href: "/docs/primitives/scroll-area",
+    href: "/category",
     description:
       "Visually and semantically separate content using the Laravel framework.",
   },
   {
     title: "Flutter",
-    href: "/docs/primitives/tabs",
+    href: "/category",
     description:
       "Create visually stunning cross-platform mobile apps with Flutter's layered content.",
   },
   {
     title: "Frameworks CSS",
-    href: "/docs/primitives/tooltip",
+    href: "/category",
     description:
       "Easily design and style your projects with powerful frameworks.",
   },
   {
     title: "See more",
-    href: "/docs/primitives/tooltip",
+    href: "/category",
     description:
       "Explore additional resources and documentation for expanding your knowledge.",
   },
@@ -135,7 +135,7 @@ export function NavigationMenuDemo() {
                 <NavigationMenuLink asChild>
                   <Link
                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
+                    href="/about"
                   >
                     <Image
                       src="/images/avatar.png"
@@ -154,16 +154,13 @@ export function NavigationMenuDemo() {
                   </Link>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/docs" title="About me">
+              <ListItem href="/about#introduce" title="About me">
                 Introducing myself and my inspiration for working.
               </ListItem>
-              <ListItem
-                href="/docs/installation"
-                title="Programming Experience"
-              >
+              <ListItem href="/about#experience" title="Programming Experience">
                 The process of learning and using programming languages.
               </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Projects">
+              <ListItem href="/about#project" title="Projects">
                 Summary of projects that I have just gone through.
               </ListItem>
             </ul>

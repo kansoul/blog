@@ -4,14 +4,12 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 
 export default function HotTopic() {
-  const hostTopics = [
+  const hotTopics = [
     {
       imgUrl: "/images/topics/img_1.jpg",
       tag: "AI Generate",
@@ -86,7 +84,7 @@ export default function HotTopic() {
             className="w-full text-center"
           >
             <CarouselContent>
-              {hostTopics.map((value, index) => (
+              {hotTopics.map((value, index) => (
                 <CarouselItem
                   key={`Carouse ${index}`}
                   className="md:basis-1/3 lg:basis-1/4"

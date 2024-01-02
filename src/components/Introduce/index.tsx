@@ -6,7 +6,10 @@ import Image from "next/image";
 
 export default function Introduce() {
   return (
-    <div className="flex items-end pt-[100px] px-1 relative z-[1]">
+    <div
+      id="introduce"
+      className="flex items-end pt-[100px] px-1 relative z-[1]"
+    >
       <div className="animate__animated animate__fadeInUp pt-[50px] w-1/2 ">
         <p className="text-[#7E9CC7] dark:text-[#7F92B0] text-sm font-bold">
           Hello Everyone!
