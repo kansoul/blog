@@ -48,7 +48,7 @@ const blogComponents: { title: string; href: string; description: string }[] = [
   },
   {
     title: "See more",
-    href: "/category",
+    href: "/blogs",
     description:
       "Explore additional resources and documentation for expanding your knowledge.",
   },

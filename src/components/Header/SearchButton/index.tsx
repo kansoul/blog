@@ -41,14 +41,14 @@ export default function SearchButton() {
             </defs>
           </svg>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-[350px] text-base bg-[#E8EDF5] dark:bg-[#E8EDF5] z-[99]">
+        <DropdownMenuContent className="w-[350px] text-base bg-[#E8EDF5] dark:bg-[#0b1222] z-[99]">
           <DropdownMenuGroup>
-            <form>
+            <form action="/search" method="get">
               <div className="relative">
                 <input
                   type="text"
                   id="default-search"
-                  className="block w-full pl-3 pr-8 h-[50px] placeholder-[#7E9CC7] dark:bg-gray-600 text-sm rounded-[8px] focus:outline-none"
+                  className="block w-full pl-3 pr-8 h-[50px] placeholder-[#7E9CC7] dark:placeholder-[#94a9c9] dark:bg-[#0F172A] border dark:border-[#222f43] text-sm rounded-[8px] focus:outline-none"
                   placeholder="Search"
                   required
                 />
@@ -57,7 +57,7 @@ export default function SearchButton() {
                   className="absolute end-2.5 bottom-[14px]"
                 >
                   <svg
-                    className="w-5 h-5 text-[#7E9CC7] dark:text-gray-400"
+                    className="w-5 h-5 text-[#7E9CC7] dark:text-[#B9E0F2]"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -76,7 +76,9 @@ export default function SearchButton() {
             </form>
           </DropdownMenuGroup>
           <div className="pt-5">
-            <p className="text-sm">Popular tags:</p>
+            <p className="text-sm text-[#344161] dark:text-[#B9E0F2]">
+              Popular tags:
+            </p>
             <div className="flex flex-wrap gap-2.5 text-xs text-[#7E9CC7] pt-3">
               {["Travel", "Tech", "Movie", "Lifestyle", "Sport"].map(
                 (value) => (
