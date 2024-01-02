@@ -3,9 +3,9 @@ import Image from "next/image";
 
 export default function Contact() {
   return (
-    <div className="container flex flex-row color-home">
+    <div className="container flex flex-row color-home ">
       <div className="w-0 xl:w-1/12"></div>
-      <div className="w-full xl:w-10/12">
+      <div className="w-full xl:w-10/12 relative z-10">
         <div className="mt-[70px]">
           <div className="w-5/6 mx-auto">
             <p className="mb-[30px] text-linear text-[64px] font-extrabold text-center">

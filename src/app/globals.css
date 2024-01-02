@@ -152,6 +152,10 @@ html body {
   -webkit-text-fill-color: transparent;
 }
 
+.bg-linear:hover {
+  background: linear-gradient(90deg, #0EA5EA 0%, #0BD1D1 51%, #0EA5EA 100%);
+}
+
 h1 {
   font-size: 64px;
   font-weight: 800;

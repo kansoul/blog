@@ -6,7 +6,7 @@ export default function Custom404() {
   return (
     <div className="container flex flex-row color-404">
       <div className="w-0 xl:w-1/12"></div>
-      <div className="w-full xl:w-10/12">
+      <div className="w-full xl:w-10/12 relative z-10">
         <div className="mt-[100px] flex w-4/5">
           <Image src="/404.svg" alt="Page not found" width={385} height={360} />
           <div className="text-left w-1/2 mt-6 ml-12">

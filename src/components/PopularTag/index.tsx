@@ -53,7 +53,7 @@ export default function PopularTag() {
     },
   ];
   return (
-    <div className="relative z-10 mb-24">
+    <div className="mb-24">
       <TitleOfSection
         mainTitle="Popular Tags"
         subTitle="Most searched keywords"

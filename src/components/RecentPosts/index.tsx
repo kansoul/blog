@@ -64,7 +64,7 @@ export default function RecentPosts() {
   ];
 
   return (
-    <div className="relative z-10 flex">
+    <div className="flex">
       <div className="w-2/3 mr-3">
         <TitleOfSection
           mainTitle="Recent posts"
