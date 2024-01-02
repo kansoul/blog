@@ -62,7 +62,7 @@ export default function Breadcrumb() {
               />
             </svg>
             <span className="ms-1 text-sm font-medium text-[#708ab0] md:ms-2">
-              Flowbite
+              Digital Design That Will Help You Start Your Business
             </span>
           </div>
         </li>

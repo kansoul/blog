@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Author from "../Base/Author";
 
 interface CardBlogProps {
   size: "L" | "XL";
@@ -27,7 +28,7 @@ export default function CardBlog(props: CardBlogProps) {
     <div
       className={`card cursor-pointer bg-[#E8EDF5] dark:bg-[#131C31] border border-[#E9EEF5] dark:border-[#222F43] rounded-lg p-[21px] shadow text-[#344161] dark:text-[#B9E0F2] hover:text-[#1cc2e7]  ${styleOfCard[size]["width"]}`}
     >
-      <a href="#">
+      <a href="/article">
         <Image
           className={`rounded-t-lg object-cover w-full ${styleOfCard[size]["image"]}`}
           src={srcImage}
@@ -57,7 +58,7 @@ export default function CardBlog(props: CardBlogProps) {
           <p>5 mins read</p>
         </div>
       </div>
-      <a href="#" className="hover:text-[#0ea5ea]">
+      <a href="/article" className="hover:text-[#0ea5ea]">
         <h5
           className={`mt-5 mb-6 font-bold tracking-tight ${styleOfCard[size]["title"]}`}
         >
@@ -65,22 +66,7 @@ export default function CardBlog(props: CardBlogProps) {
         </h5>
       </a>
       <div className="w-full flex justify-between items-center mt-5 text-[#4E658A] dark:text-[#66768F] text-sm">
-        <div className="flex items-center gap-3">
-          <Image
-            className="w-12 h-12 rounded-full"
-            src="/icons/avatar-icon.svg"
-            alt=""
-            width={0}
-            height={0}
-            sizes="100vw"
-          />
-          <div className="font-medium text-base text-[#4E658A] dark:text-[#66768F]">
-            <div>Jese Leos</div>
-            <div className="text-sm text-[#4E658A] dark:text-[#66768F]">
-              25 April 2023
-            </div>
-          </div>
-        </div>
+        <Author />
         <div className="relative">
           <div className="bg-[#F1F3F7] dark:bg-[#0F172A] w-12 h-12 rounded-full mr-12" />
           <p className="absolute bottom-[14px] left-6 text-[#708AB0] dark:text-[#94A9C9] hover:text-[#0ea5ea]">
