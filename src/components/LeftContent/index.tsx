@@ -63,7 +63,7 @@ export default function LeftContent() {
   ];
 
   return (
-    <div className="w-1/3 ml-3 mt-6">
+    <div className="lg:w-1/3 lg:ml-3 mt-6">
       <div className="rounded-[16px] px-[26px] pt-[26px] bg-[#E8EDF5] dark:bg-[#131C31] border border-[#C2D4EE] dark:border-[#222F43]">
         <p className="mb-2 text-[20px] font-bold text-linear">Popular Posts</p>
         <div className="w-[96px] h-[3px] bg-[#0EA5EA] mb-5" />
@@ -80,7 +80,7 @@ export default function LeftContent() {
               className={`ml-4 ${
                 index === recentPostTemps.length - 1
                   ? ""
-                  : "border-b border-[#C2D4EE] dark:border-[#222F43]"
+                  : "border-b border-[#C2D4EE] dark:border-[#222F43] w-full"
               }`}
             >
               <p className="mb-5 text-base font-bold tracking-tight text-[#344161] dark:text-[#B9E0F2] hover:text-[#77d3e7] dark:hover:text-[#1cc2e7] transition-colors duration-500 ease-in-out cursor-pointer">
@@ -139,9 +139,12 @@ export default function LeftContent() {
         <p className="text-base text-[#4E658A] font-bold mt-1 mb-[30px]">
           Follow us on instagram
         </p>
-        <div className="flex flex-wrap gap-x-6 gap-y-6 pb-2.5">
+        <div className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-6 pb-2.5">
           {instagramTemps.map((val, index) => (
-            <div key={`Image ${index}`} className="w-[calc(33.3333333%-16px)]">
+            <div
+              key={`Image ${index}`}
+              className="lg:w-[calc(33.3333333%-16px)]"
+            >
               <Image
                 alt={`Ảnh số ${index}`}
                 src={val}

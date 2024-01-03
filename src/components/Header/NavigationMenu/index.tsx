@@ -116,7 +116,7 @@ const servicesComponents: {
   },
 ];
 
-export function NavigationMenuDemo() {
+export function NavigationMenuMain() {
   return (
     <NavigationMenu>
       <NavigationMenuList>

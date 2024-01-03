@@ -124,7 +124,7 @@ export default function About() {
               {skillComponents.map((skill, index) => (
                 <div
                   key={skill.title + index}
-                  className="flex flex-col justify-start w-1/3 px-3"
+                  className="flex flex-col justify-start lg:w-1/3 md:w-1/2 w-full px-3"
                 >
                   <div className="flex justify-center items-center w-[60px] h-[60px] rounded-full bg-[#f9fbff] dark:bg-[#0b1222] mb-[15px] ">
                     <Image
@@ -157,9 +157,12 @@ export default function About() {
 
           <div className="mt-[50px] text-center mx-auto">
             <ButtonCyanToBlue />
-            <div className="flex flex-wrap mt-[50px]">
+            <div className="sm:flex flex-wrap mt-[50px]">
               {topics.map((value, index) => (
-                <div key={`Project ${index}`} className="p-3  w-1/3">
+                <div
+                  key={`Project ${index}`}
+                  className="p-3 md:w-1/2 lg:w-1/3 w-full"
+                >
                   <div className="m-2 w-full h-[347px] cursor-pointer relative rounded-md overflow-hidden">
                     <div className="card-info z-20 peer">
                       <div className="absolute bottom-0 left-0 p-[15px] text-left mb-4">

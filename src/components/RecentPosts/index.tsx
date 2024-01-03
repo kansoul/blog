@@ -1,6 +1,5 @@
 import Image from "next/image";
 import TitleOfSection from "../Base/TitleOfSection";
-import Logo from "../Base/Logo";
 import LeftContent from "../LeftContent";
 
 export default function RecentPosts() {
@@ -53,8 +52,8 @@ export default function RecentPosts() {
   ];
 
   return (
-    <div className="flex">
-      <div className="w-2/3 mr-3">
+    <div className="lg:flex">
+      <div className="lg:w-2/3 lg:mr-3">
         <TitleOfSection
           mainTitle="Recent posts"
           subTitle="Don't miss the latest trends"
@@ -63,17 +62,17 @@ export default function RecentPosts() {
           <a
             href="#"
             key={`Recent Post Temps ${index}`}
-            className="flex bg-transparent mb-[60px] cursor-default"
+            className="block sm:flex bg-transparent sm:mb-[60px] mb-20 cursor-default"
           >
             <Image
-              className="object-cover w-[270px] rounded-[16px] h-[257.05px] hover:-translate-y-1 transition-transform duration-300 ease-in-out cursor-pointer"
+              className="object-cover flex-shrink-0 w-full sm:w-[270px] rounded-[16px] h-[257.05px] hover:-translate-y-1 transition-transform duration-300 ease-in-out cursor-pointer"
               src={value.imgSrc}
               width={0}
               height={0}
               sizes="100vw"
               alt={value.title}
             />
-            <div className="flex flex-col leading-normal ml-5">
+            <div className="flex flex-col leading-normal sm:ml-5 mt-4 sm:mt-0">
               <span className="text-[13px] w-fit mb-4 font-bold rounded-[50px] text-[#66768f] dark:text-white py-1 px-4 bg-[#e9eef5] dark:bg-[#222f43] hover:bg-[#0ea5ea] hover:text-white transition-colors duration-500 ease-in-out cursor-pointer">
                 {value.topic}
               </span>

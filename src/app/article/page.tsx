@@ -18,14 +18,14 @@ export default function Article() {
         <div className="py-6 border-b border-[#c2d4ee] dark:border-[#222f43] w-full">
           <Breadcrumb />
         </div>
-        <p className="text-[45px] w-3/4 font-bold mb-5 text-left text-linear mt-[50px]">
+        <p className="text-[30px] sm:text-[45px] lg:w-3/4 font-bold mb-5 text-left text-linear mt-[50px]">
           Digital Design That Will Help You Start Your Business
         </p>
-        <div className="flex">
-          <div className="w-3/4 border-r border-[#c2d4ee] dark:border-[#222f43] py-3">
+        <div className="sm:flex">
+          <div className="sm:w-3/4 sm:border-r border-[#c2d4ee] dark:border-[#222f43] py-3 sm:mr-4">
             <Author />
           </div>
-          <div className="w-1/4 flex justify-center items-center">
+          <div className="sm:w-1/4 flex sm:justify-center items-center">
             <p className="font-bold text-base text-[#4E658A] dark:text-[#66768F]">
               Share
             </p>
@@ -105,8 +105,8 @@ export default function Article() {
             </div>
           </div>
         </div>
-        <div className="flex mt-[50px]">
-          <div className="content w-2/3 dark:content-dark border-b border-[#c2d4ee] dark:border-[#222f43]">
+        <div className="lg:flex mt-[50px]">
+          <div className="content lg:w-2/3 w-full dark:content-dark border-b border-[#c2d4ee] dark:border-[#222f43]">
             <p>
               The fancy moon going in little artist painting. Thirty days of
               lavender in the dreamy light inside. Other perfect oh plants, for
@@ -166,7 +166,7 @@ export default function Article() {
           </div>
           <LeftContent />
         </div>
-        <div className="w-2/3 my-6 flex flex-wrap gap-4">
+        <div className="w-full lg:w-2/3 my-6 flex flex-wrap gap-4">
           {Array.from({ length: 6 }).map((_, index) => (
             <div
               key={`Tag post ${index}`}
@@ -176,16 +176,16 @@ export default function Article() {
             </div>
           ))}
         </div>
-        <div className="w-2/3 my-10 border-b border-[#c2d4ee] dark:border-[#222f43]">
+        <div className="w-full lg:w-2/3 my-10 border-b border-[#c2d4ee] dark:border-[#222f43]">
           <p className="text-[#7f92b0] dark:text-[#b8cdeb] text-[32px] font-bold mb-5">
             Comments
           </p>
           {commentList.map((comment, index) => (
-            <div key={`comment ${index}`} className="flex mb-10">
-              <div className="w-[30%]">
+            <div key={`comment ${index}`} className="sm:flex mb-10">
+              <div className="sm:w-[30%]">
                 <Author />
               </div>
-              <div className="pl-3 w-[70%]">
+              <div className="sm:pl-3 sm:w-[70%] mt-3 sm:mt-0">
                 <div className="p-5 text-[#7f92b0] dark:text-[#b8cdeb] text-[20px] border bg-[#E8EDF5] dark:bg-[#131C31] rounded-[16px] border-[#C2D4EE] dark:border-[#222F43]">
                   {comment}
                 </div>
@@ -193,7 +193,7 @@ export default function Article() {
             </div>
           ))}
         </div>
-        <div className="w-2/3 my-10">
+        <div className="w-full lg:w-2/3 my-10">
           <p className="text-[#7f92b0] dark:text-[#b8cdeb] text-[32px] font-bold mb-5">
             Leave a comment
           </p>

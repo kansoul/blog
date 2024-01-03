@@ -85,7 +85,7 @@ export default function Blogs() {
               />
               <Link
                 href={"/category"}
-                className="text-sm text-[#708AB0] dark:text-[#94A9C9] hover:text-[#1cc2e7] mt-auto"
+                className="text-base text-[#708AB0] dark:text-[#94A9C9] hover:text-[#1cc2e7] mt-auto"
               >
                 See more &gt;&gt;&gt;
               </Link>

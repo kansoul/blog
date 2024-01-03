@@ -7,7 +7,7 @@ export default function Contact() {
       <div className="w-0 xl:w-1/12"></div>
       <div className="w-full xl:w-10/12 relative z-10">
         <div className="mt-[70px]">
-          <div className="w-5/6 mx-auto">
+          <div className="md:w-5/6 mx-auto">
             <p className="mb-[30px] text-linear text-[64px] font-extrabold text-center">
               Contact Us
             </p>
@@ -18,7 +18,7 @@ export default function Contact() {
               is our commitment as we pursue perfection in every web design
               project.
             </p>
-            <div className="text-center text-[#708ab0] dark:text-[#94a9c9] flex flex-wrap items-center justify-center mt-[30px] gap-x-4">
+            <div className="text-center text-[#708ab0] dark:text-[#94a9c9] md:flex flex-wrap items-center justify-center mt-[30px] gap-x-4">
               <div className="flex items-center">
                 <Image
                   src="/icons/contact.svg"

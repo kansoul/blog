@@ -31,7 +31,7 @@ export default function ContentCards() {
     },
   ];
   return (
-    <div className="w-full flex flex-wrap items-center justify-center gap-5">
+    <div className="w-full lg:flex flex-wrap items-center justify-center gap-5">
       {cardTemps.map(({ cardTag, cardTitle, srcImage, isHot }, index) => (
         <CardBlog
           key={`Card blog ${index}`}

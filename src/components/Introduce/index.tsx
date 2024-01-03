@@ -8,9 +8,9 @@ export default function Introduce() {
   return (
     <div
       id="introduce"
-      className="flex items-end pt-[100px] px-1 relative z-[1]"
+      className="lg:flex items-end pt-[100px] px-1 relative z-[1]"
     >
-      <div className="animate__animated animate__fadeInUp pt-[50px] w-1/2 ">
+      <div className="animate__animated animate__fadeInUp pt-[50px] lg:w-1/2 ">
         <p className="text-[#7E9CC7] dark:text-[#7F92B0] text-sm font-bold">
           Hello Everyone!
         </p>
@@ -50,7 +50,7 @@ export default function Introduce() {
           </form>
         </div>
       </div>
-      <div className="w-1/2 animate__animated animate__fadeIn flex justify-center items-end bg-avatar">
+      <div className="w-full lg:w-1/2 animate__animated animate__fadeIn flex justify-center items-end bg-avatar">
         <Image
           alt="Avatar"
           src="/images/avatar.png"

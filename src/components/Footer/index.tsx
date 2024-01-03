@@ -3,10 +3,10 @@ import ButtonLiner from "../ui/button-liner";
 
 export default function Footer() {
   return (
-    <footer className="w-full relative z-[10]">
-      <div className="container mx-auto h-[573px] border bg-[#E8EDF5] dark:bg-[#131C31] rounded-[48px] border-[#C2D4EE] dark:border-[#222F43] mt-[80px] pt-[90px] !px-[107px] pb-[51px]">
-        <div className="flex flex-wrap pb-[54px] border-b border-[#708AB0] dark:border-[#94A9C9]">
-          <div className="w-1/3 p-3">
+    <footer className="container w-full relative z-[10]">
+      <div className="mx-auto min-h-[573px] border bg-[#E8EDF5] dark:bg-[#131C31] rounded-[48px] border-[#C2D4EE] dark:border-[#222F43] mt-[80px] lg:pt-[90px] pt-6 lg:px-[107px] px-7 pb-[51px]">
+        <div className="md:flex flex-wrap pb-[54px] border-b border-[#708AB0] dark:border-[#94A9C9]">
+          <div className="md:w-1/3 p-3">
             <Logo size="L" />
             <p className="pt-4 pl-4 text-[#708AB0] dark:text-[#94A9C9] text-sm">
               When an unknown prnoto sans took a galley and scrambled it to make
@@ -20,7 +20,7 @@ export default function Footer() {
               {"14 Phuoc Tan 3, \nEaKuang, Krong Pak, Dak Lak 630000"}
             </p>
           </div>
-          <div className="w-1/3 p-3">
+          <div className="md:w-1/3 p-3">
             <p className="text-[18px] text-[#344161] dark:text-[#B9E0F2] mb-[28px]">
               Categories
             </p>
@@ -49,7 +49,7 @@ export default function Footer() {
               ))}
             </div>
           </div>
-          <div className="w-1/3 p-3">
+          <div className="md:w-1/3 p-3">
             <p className="text-[18px] text-[#344161] dark:text-[#B9E0F2] mb-[28px]">
               Newsletter
             </p>

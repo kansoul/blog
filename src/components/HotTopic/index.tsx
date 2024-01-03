@@ -54,8 +54,8 @@ export default function HotTopic() {
 
   return (
     <div className="mb-[70px] animate__animated animate__fadeInUp">
-      <div className="flex p-6 border rounded-[8px] border-[#C2D4EE] bg-[#E8EDF5] dark:bg-[#131C31] dark:border-[#222F43]">
-        <div className="w-2/12">
+      <div className="lg:flex p-6 border rounded-[8px] border-[#C2D4EE] bg-[#E8EDF5] dark:bg-[#131C31] dark:border-[#222F43]">
+        <div className="lg:w-2/12">
           <p className="text-[#344161] dark:text-[#B9E0F2] text-[20px] font-bold pb-[14px] animate__animated animate__fadeInUp">
             Hot topics
           </p>
@@ -68,10 +68,10 @@ export default function HotTopic() {
             src="/icons/hand.svg"
             width={100}
             height={100}
-            className="pl-6 animate__animated animate__zoomIn"
+            className="pl-6 animate__animated animate__zoomIn hidden lg:block"
           />
         </div>
-        <div className="w-10/12">
+        <div className="lg:w-10/12">
           <Carousel
             opts={{
               align: "start",
@@ -87,9 +87,9 @@ export default function HotTopic() {
               {hotTopics.map((value, index) => (
                 <CarouselItem
                   key={`Carouse ${index}`}
-                  className="md:basis-1/3 lg:basis-1/4"
+                  className="md:basis-1/3 sm:basis-1/2"
                 >
-                  <div className="m-2 w-[200px] h-[250px] cursor-pointer relative rounded-md overflow-hidden">
+                  <div className="m-2 w-full h-[250px] cursor-pointer relative rounded-md overflow-hidden">
                     <div className="card-info z-20 peer">
                       <div className="absolute bottom-0 left-0 p-[15px] text-left">
                         <h6 className="text-[#F9FBFF] dark:text-[#B9E0F2] mb-2 text-base font-bold">

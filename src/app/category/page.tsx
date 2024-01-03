@@ -9,9 +9,9 @@ export default function Category() {
     <div className="container flex flex-row color-home">
       <div className="w-0 xl:w-1/12"></div>
       <div className="w-full xl:w-10/12 relative z-10">
-        <div className="flex">
-          <div className="mt-[50px] mb-5 px-3 w-7/12">
-            <p className="text-linear text-[64px] font-extrabold mb-5">
+        <div className="lg:flex">
+          <div className="mt-[50px] mb-5 px-3 lg:w-7/12">
+            <p className="text-linear md:text-[64px] text-[30px] font-extrabold mb-5">
               Travel Tips
             </p>
             <p className="text-[#708ab0] dark:text-[#94a9c9] text-base">
@@ -19,13 +19,8 @@ export default function Category() {
               convallis nisi sed turpis vulputate viverra. Morbi ligula elit,
               hendrerit non nisl tincidunt, sodales consequat magna.
             </p>
-            <div className="absolute top-[3%] right-[51%]">
-              <ButtonLiner className="rounded-3xl !py-1.5 !px-10 text-sm">
-                36 articles
-              </ButtonLiner>
-            </div>
           </div>
-          <div className="flex justify-end items-end w-5/12 mb-5">
+          <div className="flex justify-end items-end lg:w-5/12 mb-5">
             <Breadcrumb />
           </div>
         </div>

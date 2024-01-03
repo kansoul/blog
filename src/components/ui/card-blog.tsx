@@ -13,12 +13,12 @@ export default function CardBlog(props: CardBlogProps) {
 
   const styleOfCard = {
     L: {
-      width: "w-[calc(33.33%-14px)]",
+      width: "lg:w-[calc(33.33%-14px)] w-full",
       image: "h-[200px]",
       title: "text-[20px]",
     },
     XL: {
-      width: "w-[calc(50%-10px)]",
+      width: "lg:w-[calc(50%-10px)] w-full",
       image: "h-[310px]",
       title: "text-[24px]",
     },
@@ -26,7 +26,7 @@ export default function CardBlog(props: CardBlogProps) {
 
   return (
     <div
-      className={`card cursor-pointer bg-[#E8EDF5] dark:bg-[#131C31] border border-[#E9EEF5] dark:border-[#222F43] rounded-lg p-[21px] shadow text-[#344161] dark:text-[#B9E0F2] hover:text-[#1cc2e7]  ${styleOfCard[size]["width"]}`}
+      className={`card cursor-pointer bg-[#E8EDF5] dark:bg-[#131C31] border border-[#E9EEF5] dark:border-[#222F43] rounded-lg p-[21px] shadow text-[#344161] dark:text-[#B9E0F2] hover:text-[#1cc2e7]  ${styleOfCard[size]["width"]} lg:mb-0 mb-4`}
     >
       <a href="/article">
         <Image
