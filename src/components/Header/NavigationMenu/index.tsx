@@ -54,36 +54,36 @@ const blogComponents: { title: string; href: string; description: string }[] = [
   },
 ];
 
-const resourcesComponents: {
-  title: string;
-  href: string;
-  description: string;
-}[] = [
-  {
-    title: "Tools and Languages",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "Explore essential tools and programming languages to enhance your development workflow.",
-  },
-  {
-    title: "Libraries and Frameworks",
-    href: "/docs/primitives/hover-card",
-    description:
-      "Discover libraries and frameworks providing a visual preview for enriched content experiences.",
-  },
-  {
-    title: "Programming Communities",
-    href: "/docs/primitives/scroll-area",
-    description:
-      "Connect with like-minded individuals in visually and semantically diverse programming communities.",
-  },
-  {
-    title: "Books and Documentation",
-    href: "/docs/primitives/tabs",
-    description:
-      "Access a curated collection of layered content, organized into tab panels for efficient exploration.",
-  },
-];
+// const resourcesComponents: {
+//   title: string;
+//   href: string;
+//   description: string;
+// }[] = [
+//   {
+//     title: "Tools and Languages",
+//     href: "/docs/primitives/alert-dialog",
+//     description:
+//       "Explore essential tools and programming languages to enhance your development workflow.",
+//   },
+//   {
+//     title: "Libraries and Frameworks",
+//     href: "/docs/primitives/hover-card",
+//     description:
+//       "Discover libraries and frameworks providing a visual preview for enriched content experiences.",
+//   },
+//   {
+//     title: "Programming Communities",
+//     href: "/docs/primitives/scroll-area",
+//     description:
+//       "Connect with like-minded individuals in visually and semantically diverse programming communities.",
+//   },
+//   {
+//     title: "Books and Documentation",
+//     href: "/docs/primitives/tabs",
+//     description:
+//       "Access a curated collection of layered content, organized into tab panels for efficient exploration.",
+//   },
+// ];
 
 const servicesComponents: {
   title: string;
@@ -182,7 +182,7 @@ export function NavigationMenuMain() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
@@ -197,7 +197,7 @@ export function NavigationMenuMain() {
               ))}
             </ul>
           </NavigationMenuContent>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
         <NavigationMenuItem>
           <NavigationMenuTrigger>Services</NavigationMenuTrigger>
           <NavigationMenuContent>

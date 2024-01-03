@@ -60,7 +60,7 @@ export default function Blogs() {
       <div className="w-0 xl:w-1/12"></div>
       <div className="w-full xl:w-10/12 relative z-10">
         <div className="pt-[70px] mb-8">
-          <p className="text-center mb-1.5 text-[64px] font-bold">
+          <p className="text-center mb-1.5 lg:text-[64px] text-[44px] font-bold">
             <span className="text-linear">See all blogs</span>
           </p>
           <p className="text-center text-[#708AB0] dark:text-[#94A9C9] text-[18px] whitespace-pre-line">
@@ -77,15 +77,13 @@ export default function Blogs() {
         {blogComponents.map((blog, index) => (
           <div key={`Blog ${index}`} className="mb-[80px]">
             <div className="flex justify-between mb-[20px]">
-              <TitleOfSection
-                mainTitle={blog.title}
-                subTitle={blog.description}
-                fontSize="text-[36px]"
-                className="w-1/2 !mb-0"
-              />
+              <p className={`text-linear font-bold lg:text-[36px] text-[26px]`}>
+                {blog.title}
+              </p>
+
               <Link
                 href={"/category"}
-                className="text-base text-[#708AB0] dark:text-[#94A9C9] hover:text-[#1cc2e7] mt-auto"
+                className="text-sm text-[#708AB0] dark:text-[#94A9C9] hover:text-[#1cc2e7] mt-auto mb-1"
               >
                 See more &gt;&gt;&gt;
               </Link>

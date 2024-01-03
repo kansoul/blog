@@ -37,45 +37,48 @@ export default function Header() {
           <nav className="hidden justify-between items-center w-[65%] lg:flex lg:w-auto lg:order-1 ">
             <NavigationMenuMain />
           </nav>
-          <div className="flex items-end justify-end lg:items-center w-full max-w-[225px] lg:order-2">
+          <div className="flex items-end justify-end lg:items-center max-w-[225px] lg:order-2">
             <SearchButton />
             <ChangeDarkMode />
-            <Link href={"/login"}>
+            {/* <Link href={"/login"}>
               <ButtonLiner className="hidden lg:block">Login</ButtonLiner>
-            </Link>
-          </div>
-          <div
-            className="burger-icon-mobile "
-            onClick={() => setIsOpenMenuMobile(true)}
-          >
-            <svg
-              className="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 17 14"
+            </Link> */}
+            <div
+              className="burger-icon-mobile block lg:hidden"
+              onClick={() => setIsOpenMenuMobile(true)}
             >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M1 1h15M1 7h15M1 13h15"
-              />
-            </svg>
+              <svg
+                className="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 17 14"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M1 1h15M1 7h15M1 13h15"
+                />
+              </svg>
+            </div>
           </div>
+
           <NavigationMenuMobile
             isOpenMenuMobile={isOpenMenuMobile}
             setIsOpenMenuMobile={setIsOpenMenuMobile}
           />
-          <div
-            onClick={() => setIsOpenMenuMobile(false)}
-            className={`transition-all ${
-              isOpenMenuMobile
-                ? "fixed bg-[#0000008a] top-0 left-0 h-full w-full z-[1] right-0 opacity-1 visible"
-                : "opacity-0 invisible"
-            }`}
-          ></div>
+          {isOpenMenuMobile && (
+            <div
+              onClick={() => setIsOpenMenuMobile(false)}
+              className={`transition-all ${
+                isOpenMenuMobile
+                  ? "fixed bg-[#0000008a] top-0 left-0 h-full w-full z-[1] right-0 opacity-1 visible"
+                  : "opacity-0 invisible"
+              }`}
+            />
+          )}
         </div>
       </div>
     </header>

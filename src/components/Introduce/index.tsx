@@ -14,7 +14,7 @@ export default function Introduce() {
         <p className="text-[#7E9CC7] dark:text-[#7F92B0] text-sm font-bold">
           Hello Everyone!
         </p>
-        <h1 className="text-[#344161] dark:text-[#E6F0FF] py-5 min-h-[214px]">
+        <h1 className="text-[#344161] dark:text-[#E6F0FF] py-5 min-h-[214px] text-[55px] sm:text-[64px]">
           I&apos;m
           <div className="text-transparent text-linear">
             <Typewriter

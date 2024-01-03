@@ -51,6 +51,7 @@ export function NavigationMenuMobile({
           className="block p-3 text-[#66768f]"
           key={value.title}
           href={value.href}
+          onClick={() => setIsOpenMenuMobile(false)}
         >
           {value.title}
         </Link>

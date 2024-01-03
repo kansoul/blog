@@ -17,7 +17,7 @@ export default function Logo(props: { size: "L" | "XL" }) {
   return (
     <Link
       href="/"
-      className={`w-full flex items-center cursor-pointer ${
+      className={`flex items-center cursor-pointer flex-shrink-0 ${
         sizeOfLogo[props.size]["width"]
       }`}
     >

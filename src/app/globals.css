@@ -275,7 +275,8 @@ header > nav {
   bottom: -200px;
   left: -140px;
   height: 500px;
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   background: url(/color-bg-avatar.svg) no-repeat 50%;
   background-size: contain;
   z-index: 1;
