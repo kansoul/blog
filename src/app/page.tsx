@@ -3,9 +3,13 @@ import HotTopic from "@/components/HotTopic";
 import Introduce from "@/components/Introduce";
 import PopularTag from "@/components/PopularTag";
 import RecentPosts from "@/components/RecentPosts";
+import { getPosts } from "@/services/post";
+import { Blog } from "@/types/Blog";
 import "animate.css";
 
-export default function Home() {
+export default async function Home() {
+  const posts: Blog[] = await getPosts();
+
   return (
     <div className="container flex flex-row color-home">
       <div className="w-0 xl:w-1/12"></div>
@@ -14,7 +18,7 @@ export default function Home() {
         <HotTopic />
         <EditorPicked />
         <PopularTag />
-        <RecentPosts />
+        <RecentPosts posts={posts} />
       </div>
     </div>
   );

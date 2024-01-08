@@ -1,31 +1,61 @@
+"use client";
+
 import ButtonLiner from "@/components/ui/button-liner";
+import { loginSchema } from "@/schema/userSchema";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import InputForm from "@/components/Base/Form/InputForm";
 
 export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
+
+  const login = async (data: any) => {
+    await signIn("credentials", {
+      ...data,
+      redirect: true,
+      callbackUrl: "/dashboard",
+    });
+  };
+
   return (
     <div className="mx-auto text-center flex flex-col items-center relative">
       <p className="text-linear text-[45px] font-bold my-[50px]">
         Welcome back !
       </p>
       <form
-        action=""
+        onSubmit={handleSubmit(login)}
         className="w-full max-w-[420px] flex flex-col border border-[#c2d4ee] dark:border-[#222f43] bg-[#e8edf5] dark:bg-[#131c31] rounded-[16px] p-[30px] mb-"
       >
-        <input
+        <InputForm
+          error={errors?.username?.message}
+          register={register}
+          name="username"
           type="text"
-          className="placeholder-[#7E9CC7] bg-transparent border border-[#c2d4ee] dark:border-[#222f43]  text-sm rounded-[8px] focus:outline-none p-5 mb-6 dark:focus:border-[#66768f] "
           placeholder="User name"
         />
-        <input
+        <InputForm
+          error={errors?.password?.message}
+          register={register}
+          name="password"
           type="password"
-          className="placeholder-[#7E9CC7] bg-transparent border border-[#c2d4ee] dark:border-[#222f43]  text-sm rounded-[8px] focus:outline-none p-5 mb-6 dark:focus:border-[#66768f]"
           placeholder="Password"
         />
         <p className="text-sm text-[#344161] dark:text-[#b9e0f2] text-left mb-6">
           Forgot password?
         </p>
-        <ButtonLiner className="w-full !py-3 hover:-translate-y-1 transition-transform duration-300 ease-in-out ">
+        <ButtonLiner
+          type="submit"
+          className="w-full !py-3 hover:-translate-y-1 transition-transform duration-300 ease-in-out "
+        >
           Login
         </ButtonLiner>
         <div className="text-sm text-left text-[#94A9C9] mt-6">

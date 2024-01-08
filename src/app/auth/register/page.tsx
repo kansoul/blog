@@ -1,40 +1,88 @@
+"use client";
+
+import InputForm from "@/components/Base/Form/InputForm";
 import ButtonLiner from "@/components/ui/button-liner";
+import { registerSchema } from "@/schema/userSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
+  const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onBlur",
+    resolver: yupResolver(registerSchema),
+  });
+
+  const createUser = async (data: any) => {
+    delete data.confirmPassword;
+    const newUser = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const res = newUser.json();
+    console.log(res);
+    // if (newUser) {
+    //   const redirectTo =
+    //     "/auth/login?message=Register successfully, please login again";
+    //   return router.push(redirectTo);
+    // }
+  };
+
   return (
     <div className="mx-auto text-center flex flex-col items-center relative">
       <p className="text-linear text-[45px] font-bold my-[50px]">Register</p>
       <form
-        action=""
+        onSubmit={handleSubmit(createUser)}
         className="w-full max-w-[420px] flex flex-col border border-[#c2d4ee] dark:border-[#222f43] bg-[#e8edf5] dark:bg-[#131c31] rounded-[16px] p-[30px] mb-"
       >
-        <input
+        <InputForm
+          error={errors?.name?.message}
+          register={register}
+          name="name"
           type="text"
-          className="placeholder-[#7E9CC7] bg-transparent border border-[#c2d4ee] dark:border-[#222f43]  text-sm rounded-[8px] focus:outline-none p-5 mb-6 dark:focus:border-[#66768f] "
           placeholder="Full name"
         />
-        <input
-          type="email"
-          className="placeholder-[#7E9CC7] bg-transparent border border-[#c2d4ee] dark:border-[#222f43]  text-sm rounded-[8px] focus:outline-none p-5 mb-6 dark:focus:border-[#66768f] "
+        <InputForm
+          error={errors?.email?.message}
+          register={register}
+          name="email"
+          type="text"
           placeholder="Email"
         />
-        <input
+        <InputForm
+          error={errors?.username?.message}
+          register={register}
+          name="username"
           type="text"
-          className="placeholder-[#7E9CC7] bg-transparent border border-[#c2d4ee] dark:border-[#222f43]  text-sm rounded-[8px] focus:outline-none p-5 mb-6 dark:focus:border-[#66768f] "
-          placeholder="User name"
+          placeholder="Username"
         />
-        <input
+        <InputForm
+          error={errors?.password?.message}
+          register={register}
+          name="password"
           type="password"
-          className="placeholder-[#7E9CC7] bg-transparent border border-[#c2d4ee] dark:border-[#222f43]  text-sm rounded-[8px] focus:outline-none p-5 mb-6 dark:focus:border-[#66768f]"
           placeholder="Password"
         />
-        <input
+        <InputForm
+          error={errors?.confirmPassword?.message}
+          register={register}
+          name="confirmPassword"
           type="password"
-          className="placeholder-[#7E9CC7] bg-transparent border border-[#c2d4ee] dark:border-[#222f43]  text-sm rounded-[8px] focus:outline-none p-5 mb-6 dark:focus:border-[#66768f]"
           placeholder="Confirm password"
         />
+
         <ButtonLiner className="w-full !py-3 hover:-translate-y-1 transition-transform duration-300 ease-in-out ">
           Create a account
         </ButtonLiner>
