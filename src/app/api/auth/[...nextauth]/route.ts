@@ -16,19 +16,26 @@ const authOptions: AuthOptions = {
       },
       async authorize(credentials, req) {
         if (!credentials) return null;
-        const { username, password } = credentials;
-        const res = await fetch(`${API_URL}/login`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username,
-            password,
-          }),
-        });
-        const user = await res.json();
-        return res.ok && user ? user?.data : null;
+        try {
+          const { username, password } = credentials;
+          const res = await fetch(`${API_URL}/login`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              username,
+              password,
+            }),
+          });
+          const user = await res.json();
+
+          if (!user.error && user?.data) {
+            return user?.data;
+          }
+        } catch (error) {
+          return Error(JSON.stringify(error));
+        }
       },
     }),
   ],

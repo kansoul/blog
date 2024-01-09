@@ -13,10 +13,10 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify(data),
     });
     const result = await res.json();
-    console.log(result);
+
     return res.ok && result
       ? NextResponse.json({ data: result }, { status: 201 })
-      : NextResponse.json({ status: 404 });
+      : NextResponse.json(result);
   } catch (error) {
     return NextResponse.json({ error: error }, { status: 500 });
   }

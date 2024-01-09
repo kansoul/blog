@@ -1,10 +1,26 @@
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
+import { verify } from "./utils/jwt_sign_verify";
 
 export default withAuth(
-  function middleware(req) {
-    if (req.nextUrl.pathname.startsWith("/dashboard") && !req.nextauth.token) {
-      return NextResponse.redirect(new URL("/auth/login", req.url));
+  async function middleware(req) {
+    const token = req?.nextauth?.token?.token;
+
+    if (req.nextUrl.pathname.startsWith("/dashboard") && !token) {
+      return NextResponse.redirect(
+        new URL("/auth/login?message=You must login first!", req.url)
+      );
+    }
+
+    try {
+      await verify((token as string) || "", process.env.JWT_SECRET as string);
+    } catch (error) {
+      return NextResponse.redirect(
+        new URL(
+          "/auth/login?message=Login expired, please log in again!",
+          req.url
+        )
+      );
     }
   },
   {

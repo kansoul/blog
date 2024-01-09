@@ -31,9 +31,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <main className="bg-[#F9FBFF] dark:bg-[#0F172A] pb-6">
-            <Header />
             {children}
-            <Footer />
           </main>
         </ThemeProvider>
       </body>

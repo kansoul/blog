@@ -8,10 +8,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import AlertError from "@/components/Base/Alert";
+import { useState } from "react";
 
 export default function Register() {
   const router = useRouter();
-
+  const [showMessageError, setShowMessageError] = useState<string>("");
   const {
     register,
     handleSubmit,
@@ -30,19 +32,27 @@ export default function Register() {
       },
       body: JSON.stringify(data),
     });
-
-    const res = newUser.json();
-    console.log(res);
-    // if (newUser) {
-    //   const redirectTo =
-    //     "/auth/login?message=Register successfully, please login again";
-    //   return router.push(redirectTo);
-    // }
+    const res = await newUser.json();
+    if (res?.code === 400 || res?.code === 500 || res?.error) {
+      return setShowMessageError(
+        res?.errors?.username || res?.errors?.email || "An error occurred!"
+      );
+    }
+    const redirectTo =
+      "/auth/login?success=Register successfully, please login again";
+    return router.push(redirectTo);
   };
 
   return (
     <div className="mx-auto text-center flex flex-col items-center relative">
       <p className="text-linear text-[45px] font-bold my-[50px]">Register</p>
+      {showMessageError && (
+        <AlertError
+          type="error"
+          message={showMessageError}
+          showAlert={setShowMessageError}
+        />
+      )}
       <form
         onSubmit={handleSubmit(createUser)}
         className="w-full max-w-[420px] flex flex-col border border-[#c2d4ee] dark:border-[#222f43] bg-[#e8edf5] dark:bg-[#131c31] rounded-[16px] p-[30px] mb-"
