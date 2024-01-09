@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Custom404() {
   return (
-    <div className="container flex flex-row color-404">
+    <div className="container flex flex-row color-404 h-[100vh]">
       <div className="w-0 xl:w-1/12"></div>
       <div className="w-full xl:w-10/12 relative z-10">
         <div className="mt-[100px] flex w-4/5">
@@ -17,7 +17,7 @@ export default function Custom404() {
               The page you’re looking for has slipped in to an unknown realm.
               Click the button below to go back to the homepage.
             </p>
-            <Link href="/home">
+            <Link href="/">
               <ButtonLiner className="!px-[26px] !py-2.5 me-0 text-base mt-6">
                 Homepage
               </ButtonLiner>

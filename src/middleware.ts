@@ -6,7 +6,7 @@ export default withAuth(
   async function middleware(req) {
     const token = req?.nextauth?.token?.token;
 
-    if (req.nextUrl.pathname.startsWith("/dashboard") && !token) {
+    if (req.nextUrl.pathname.startsWith("/admin") && !token) {
       return NextResponse.redirect(
         new URL("/auth/login?message=You must login first!", req.url)
       );
@@ -32,5 +32,5 @@ export default withAuth(
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: "/dashboard/:path*",
+  matcher: "/admin/:path*",
 };

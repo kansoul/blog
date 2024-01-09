@@ -1,3 +1,5 @@
+"use client";
+
 import ButtonLiner from "@/components/ui/button-liner";
 import {
   NavigationMenu,
@@ -60,7 +62,7 @@ export default function Login() {
                 >
                   <li>
                     <Link
-                      href="/dashboard"
+                      href="/admin/dashboard"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       Dashboard
@@ -68,7 +70,7 @@ export default function Login() {
                   </li>
                   <li>
                     <Link
-                      href="#"
+                      href="/admin/user/settings"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       Settings
