@@ -34,7 +34,7 @@ export default function MediaManagement() {
 
   const refetchData = () => {
     setOpenCreateMedia(false);
-    setImageUpdate(false);
+    setImageUpdate(null);
     handleGetMedia();
   };
 
