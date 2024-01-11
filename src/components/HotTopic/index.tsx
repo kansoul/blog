@@ -53,7 +53,7 @@ export default function HotTopic() {
   ];
 
   return (
-    <div className="mb-[70px] animate__animated animate__fadeInUp">
+    <div className="mb-[70px] animate__animated animate__fadeInUp relative z-20">
       <div className="lg:flex p-6 border rounded-[8px] border-[#C2D4EE] bg-[#E8EDF5] dark:bg-[#131C31] dark:border-[#222F43]">
         <div className="lg:w-2/12">
           <p className="text-[#344161] dark:text-[#B9E0F2] text-[20px] font-bold pb-[14px] animate__animated animate__fadeInUp">

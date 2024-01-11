@@ -1,12 +1,12 @@
 import React from "react";
-import { UseFormRegisterReturn } from "react-hook-form";
 
 interface InputProps {
   placeholder?: string;
   register: any;
   name: string;
   type?: string;
-  error?: string;
+  error?: any;
+  className?: string;
 }
 
 const InputForm: React.FC<InputProps> = ({
@@ -15,10 +15,13 @@ const InputForm: React.FC<InputProps> = ({
   name,
   type = "text",
   error,
+  className,
 }) => (
   <div className="mb-6 text-left">
     <input
-      className="w-full placeholder-[#7E9CC7] bg-transparent border border-[#c2d4ee] dark:border-[#222f43]  text-sm rounded-[8px] focus:outline-none p-5 dark:focus:border-[#66768f]"
+      className={`w-full placeholder-[#7E9CC7] bg-transparent border border-[#c2d4ee] dark:border-[#222f43]  text-sm rounded-[8px] focus:outline-none p-5 dark:focus:border-[#66768f] ${
+        className ? className : ""
+      }`}
       type={type}
       placeholder={placeholder || ""}
       {...register(name)}

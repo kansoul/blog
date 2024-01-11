@@ -2,12 +2,13 @@
 
 import ButtonLiner from "@/components/ui/button-liner";
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { API_URL } from "@/config";
 import useLogout from "@/hooks/useLogout";
 import { useSession } from "next-auth/react";
@@ -31,73 +32,35 @@ export default function Login() {
     </Link>
   ) : (
     <div className="relative w-[115px] hidden lg:block">
-      <NavigationMenu>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>
-              <div className="flex text-sm rounded-full md:me-0">
-                <Image
-                  width={8}
-                  height={8}
-                  className="object-cover w-8 h-8 rounded-full"
-                  src={imageUrl}
-                  alt="user photo"
-                />
-              </div>
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div
-                id="dropdownAvatar"
-                className="bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
-              >
-                <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                  <div>{session?.user?.name}</div>
-                  <div className="font-medium truncate">
-                    {session?.user?.email}
-                  </div>
-                </div>
-                <ul
-                  className="py-2 text-sm text-gray-700 dark:text-gray-200"
-                  aria-labelledby="dropdownUserAvatarButton"
-                >
-                  <li>
-                    <Link
-                      href="/admin/dashboard"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Dashboard
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/admin/user/settings"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Settings
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Earnings
-                    </Link>
-                  </li>
-                </ul>
-                <div className="py-2">
-                  <span
-                    onClick={() => handleLogout("/")}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer"
-                  >
-                    Sign out
-                  </span>
-                </div>
-              </div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+      <DropdownMenu>
+        <DropdownMenuTrigger className="focus:outline-none">
+          <div className="flex text-sm rounded-full md:me-0">
+            <Image
+              width={8}
+              height={8}
+              className="object-cover w-8 h-8 rounded-full"
+              src={imageUrl}
+              alt="user photo"
+            />
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-[180px]">
+          <DropdownMenuLabel>{session?.user?.name}</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <Link href="/admin/dashboard">Dashboard</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/admin/user/setting">Setting</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/admin/contact">Contact</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <span onClick={() => handleLogout("/")}>Sign out</span>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 }
