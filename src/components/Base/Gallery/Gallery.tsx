@@ -1,75 +1,102 @@
-export default function Gallery() {
+"use client";
+
+import Image from "next/image";
+import { API_URL } from "@/config";
+import { useSession } from "next-auth/react";
+import { useState, useEffect } from "react";
+
+export default function Gallery(props: { setMediaId: any; closeGallery: any }) {
+  const { setMediaId, closeGallery } = props;
+  const { data: session } = useSession();
+
+  const [media, setMedia] = useState<any>([]);
+  const [mediaChoose, setMediaChoose] = useState<any>(null);
+
+  const handleGetMedia = async () => {
+    const result = await fetch(`api/media`, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + session?.user?.token,
+      },
+    });
+    const data = await result.json();
+    if (data && data.error) {
+      alert("Error fetching media");
+    }
+    setMedia(data.data);
+  };
+
+  const chooseImage = () => {
+    if (!mediaChoose) return;
+    setMediaId(mediaChoose?._id);
+    closeGallery(false);
+  };
+
+  useEffect(() => {
+    if (session?.user?.token) handleGetMedia();
+  }, [session]);
+
+  const srcImage = (mediaId: string) => API_URL + "/media/" + mediaId;
+
   return (
-    <div
-      id="default-modal"
-      tabIndex={-1}
-      aria-hidden="true"
-      className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[99] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
-    >
-      <div className="relative p-4 w-full max-w-2xl max-h-full">
-        {/* Modal content */}
-        <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-          {/* Modal header */}
-          <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Terms of Service
-            </h3>
-            <button
-              type="button"
-              className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-              data-modal-hide="default-modal"
-            >
-              <svg
-                className="w-3 h-3"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 14"
+    <div className="w-full h-full overflow-hidden p-2">
+      <div className="w-full h-[calc(100%-60px)] overflow-y-scroll">
+        <div className="flex flex-wrap">
+          {media &&
+            media.length > 0 &&
+            media.map((value: any) => (
+              <div
+                key={value._id}
+                className={`p-3 w-1/5 h-[300px] ${
+                  value._id === mediaChoose?._id ? "bg-gray-400" : ""
+                }`}
               >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                />
-              </svg>
-              <span className="sr-only">Close modal</span>
-            </button>
-          </div>
-          {/* Modal body */}
-          <div className="p-4 md:p-5 space-y-4">
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              With less than a month to go before the European Union enacts new
-              consumer privacy laws for its citizens, companies around the world
-              are updating their terms of service agreements to comply.
-            </p>
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              The European Union’s General Data Protection Regulation (G.D.P.R.)
-              goes into effect on May 25 and is meant to ensure a common set of
-              data rights in the European Union. It requires organizations to
-              notify users as soon as possible of high-risk data breaches that
-              could personally affect them.
-            </p>
-          </div>
-          {/* Modal footer */}
-          <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-            <button
-              data-modal-hide="default-modal"
-              type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              I accept
-            </button>
-            <button
-              data-modal-hide="default-modal"
-              type="button"
-              className="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
-            >
-              Decline
-            </button>
-          </div>
+                <div
+                  className="w-full h-full cursor-pointer relative rounded-md overflow-hidden"
+                  onClick={() => {
+                    setMediaChoose(value);
+                  }}
+                >
+                  <div className="card-info z-20 peer">
+                    <div className="absolute bottom-0 left-0 p-[15px] text-left">
+                      <h6 className="text-[#F9FBFF] dark:text-[#B9E0F2] mb-2 text-base font-bold">
+                        {value.title}
+                      </h6>
+                      <p className="text-xs text-[#708AB0] dark:text-[#94A9C9]">
+                        {value.description}
+                      </p>
+                    </div>
+                  </div>
+                  <Image
+                    alt={value.description}
+                    src={srcImage(value._id)}
+                    width="0"
+                    height="0"
+                    sizes="100vw"
+                    className="object-cover w-full h-full transform transition-transform duration-300 peer-hover:scale-110"
+                  />
+                </div>
+              </div>
+            ))}
         </div>
+      </div>
+      <div className="mt-3 w-full flex items-center justify-end flex-wrap gap-x-4">
+        <button
+          type="button"
+          onClick={() => closeGallery(false)}
+          className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+        >
+          Close
+        </button>
+
+        <button
+          type="button"
+          onClick={chooseImage}
+          disabled={!mediaChoose}
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        >
+          Choose
+        </button>
       </div>
     </div>
   );

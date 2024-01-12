@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const res = await fetch(API_URL + "/categories", {
+    const res = await fetch(API_URL + "/tags", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     if (!body) return NextResponse.json({ error: true }, { status: 400 });
-    const res = await fetch(API_URL + "/category", {
+    const res = await fetch(API_URL + "/tag", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,9 +42,9 @@ export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
     if (!body) return NextResponse.json({ error: true }, { status: 400 });
-    const categoryId = body._id;
+    const tagId = body._id;
     delete body._id;
-    const res = await fetch(API_URL + "/category/" + categoryId, {
+    const res = await fetch(API_URL + "/tag/" + tagId, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export async function DELETE(request: NextRequest) {
   try {
     const body = await request.json();
     if (!body) return NextResponse.json({ error: true }, { status: 400 });
-    const res = await fetch(API_URL + "/category/" + body.categoryId, {
+    const res = await fetch(API_URL + "/tag/" + body.tagId, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

@@ -1,6 +1,6 @@
 "use client";
 
-import CreateUpdateCategory from "@/components/CreateUpdateCategory";
+import CreateUpdateModal from "@/components/CreateUpdateModal";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { API_URL } from "@/config";
 import { useSession } from "next-auth/react";
@@ -29,12 +29,29 @@ export default function CategoriesManagement() {
 
   useEffect(() => {
     if (session?.user?.token) handleGetCategories();
+
+    // eslint-disable-next-line
   }, [session]);
 
   const refetchData = () => {
     setOpenCategoryModal(false);
     setCategoryUpdate(null);
     handleGetCategories();
+  };
+
+  const deleteCategory = async (id: string) => {
+    const result = await fetch("/admin/api/category", {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + session?.user?.token,
+      },
+      body: JSON.stringify({
+        categoryId: id,
+      }),
+    });
+    if (result.ok) {
+      refetchData();
+    }
   };
 
   const srcImage = (mediaId: string) => API_URL + "/media/" + mediaId;
@@ -74,17 +91,17 @@ export default function CategoriesManagement() {
               className="w-auto p-6 max-h-screen"
             >
               {categoryUpdate ? (
-                <CreateUpdateCategory
+                <CreateUpdateModal
+                  type="category"
                   token={session?.user?.token}
                   refetch={refetchData}
-                  closePopup={setOpenCategoryModal}
-                  categoryUpdate={categoryUpdate}
+                  itemUpdate={categoryUpdate}
                 />
               ) : (
-                <CreateUpdateCategory
+                <CreateUpdateModal
+                  type="category"
                   token={session?.user?.token}
                   refetch={refetchData}
-                  closePopup={setOpenCategoryModal}
                 />
               )}
             </DialogContent>
@@ -93,6 +110,7 @@ export default function CategoriesManagement() {
           <div className="h-9" />
         )}
       </div>
+
       <div className="flex flex-col">
         <div className="overflow-x-auto">
           <div className="inline-block min-w-full align-middle">
@@ -197,6 +215,10 @@ export default function CategoriesManagement() {
                         <td className="p-4 space-x-2 whitespace-nowrap">
                           <button
                             type="button"
+                            onClick={() => {
+                              setCategoryUpdate(val);
+                              setOpenCategoryModal(true);
+                            }}
                             className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-primary-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-primary-800"
                           >
                             <svg
@@ -218,6 +240,7 @@ export default function CategoriesManagement() {
                           </button>
                           <button
                             type="button"
+                            onClick={() => deleteCategory(val?._id)}
                             className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
                           >
                             <svg
