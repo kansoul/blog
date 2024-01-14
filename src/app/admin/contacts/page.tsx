@@ -1,3 +1,5 @@
+import Dropdown from "@/components/Base/Form/DropdownMultiSelect";
+
 export default function ContactManagement() {
-  return <div>ContactManagement</div>;
+  return <div>Contact</div>;
 }

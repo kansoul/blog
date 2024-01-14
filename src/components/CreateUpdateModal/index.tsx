@@ -19,6 +19,7 @@ import TextareaForm from "../Base/Form/TextareaForm";
 import Gallery from "../Base/Gallery/Gallery";
 import ButtonLiner from "../ui/button-liner";
 import { tagSchema } from "@/schema/tagSchema";
+import { srcImage } from "@/utils/image";
 
 export default function CreateUpdateModal(props: {
   itemUpdate?: any;
@@ -37,6 +38,14 @@ export default function CreateUpdateModal(props: {
       : "Create or update categories here. Click save when you&apos;re done.",
     schema: isTag ? tagSchema : categorySchema,
   };
+  const bodyScroll = document.documentElement.style;
+
+  useEffect(() => {
+    bodyScroll.overflow = "hidden";
+    return () => {
+      bodyScroll.overflow = "scroll";
+    };
+  }, []);
 
   const {
     register,
@@ -48,41 +57,39 @@ export default function CreateUpdateModal(props: {
     ...(itemUpdate ? { defaultValues: itemUpdate } : {}),
   });
 
-  const create = async (data: any) => {
-    data.slug = changeTextToSlug(data.name);
-    const result = await fetch(`/admin/api/${type}`, {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-      body: JSON.stringify(data),
-    });
-    console.log(result);
-    if (result.ok) {
-      refetch();
+  const sendRequest = async (method: string, data: any) => {
+    try {
+      data.slug = changeTextToSlug(data.name);
+      const result = await fetch(`/admin/api/${type}`, {
+        method,
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (result.ok) {
+        refetch();
+      } else {
+        alert("An error occurred!");
+      }
+    } catch (error) {
+      alert("An error occurred!");
     }
   };
 
   const update = async (data: any) => {
-    data.slug = changeTextToSlug(data.name);
-    const result = await fetch(`/admin/api/${type}`, {
-      method: "PUT",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-      body: JSON.stringify(data),
-    });
-    if (result.ok) {
-      refetch();
-    }
+    await sendRequest("PUT", data);
+  };
+
+  const create = async (data: any) => {
+    await sendRequest("POST", data);
   };
 
   const handleSetImage = (id?: string) => {
     setValue("featuredMedia", id);
     setImage(id);
   };
-
-  const srcImage = (mediaId: string) => API_URL + "/media/" + mediaId;
 
   useEffect(() => {
     if (itemUpdate) handleSetImage(itemUpdate?.featuredMedia);
@@ -191,7 +198,10 @@ export default function CreateUpdateModal(props: {
       </form>
       {openGallery && (
         <DialogPortal>
-          <DialogContent className="w-2/3 h-4/5 max-w-full">
+          <DialogContent
+            className="w-2/3 h-4/5 max-w-full"
+            onClose={() => setOpenGallery(false)}
+          >
             <Gallery
               closeGallery={setOpenGallery}
               setMediaId={handleSetImage}

@@ -2,7 +2,7 @@
 
 import FileUpload from "@/components/FileUpload";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { API_URL } from "@/config";
+import { srcImage } from "@/utils/image";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -24,12 +24,14 @@ export default function MediaManagement() {
     });
     const data = await result.json();
     if (data && data.error) {
-      alert("Error fetching media");
+      return alert("Error fetching media");
     }
     setMedia(data.data);
   };
   useEffect(() => {
     if (session?.user?.token) handleGetMedia();
+
+    // eslint-disable-next-line
   }, [session]);
 
   const refetchData = () => {
@@ -38,7 +40,6 @@ export default function MediaManagement() {
     handleGetMedia();
   };
 
-  const srcImage = (mediaId: string) => API_URL + "/media/" + mediaId;
   return (
     <div className="flex flex-wrap">
       {media &&

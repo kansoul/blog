@@ -3,6 +3,7 @@ import Breadcrumb from "@/components/Base/Breadcrumb";
 import LeftContent from "@/components/LeftContent";
 import ButtonLiner from "@/components/ui/button-liner";
 import Image from "next/image";
+import { data } from "./data";
 
 export default function Article() {
   let commentList = [
@@ -107,6 +108,11 @@ export default function Article() {
         </div>
         <div className="lg:flex mt-[50px]">
           <div className="content lg:w-2/3 w-full dark:content-dark border-b border-[#c2d4ee] dark:border-[#222f43]">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: data,
+              }}
+            />
             <p>
               The fancy moon going in little artist painting. Thirty days of
               lavender in the dreamy light inside. Other perfect oh plants, for

@@ -44,7 +44,7 @@ export default function Login() {
             />
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-[180px]">
+        <DropdownMenuContent className="w-auto">
           <DropdownMenuLabel>{session?.user?.name}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>

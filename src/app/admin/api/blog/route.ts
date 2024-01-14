@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const res = await fetch(API_URL + "/tags", {
+    const res = await fetch(API_URL + "/blogs", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     if (!body) return NextResponse.json({ error: true }, { status: 400 });
-    const res = await fetch(API_URL + "/tag", {
+    const res = await fetch(API_URL + "/blog", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,7 +29,6 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify(body),
     });
-
     const result = await res.json();
     return NextResponse.json({ result }, { status: result.code });
   } catch (error) {
@@ -42,9 +41,9 @@ export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
     if (!body) return NextResponse.json({ error: true }, { status: 400 });
-    const tagId = body._id;
+    const blogId = body._id;
     delete body._id;
-    const res = await fetch(API_URL + "/tag/" + tagId, {
+    const res = await fetch(API_URL + "/blog/" + blogId, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +64,7 @@ export async function DELETE(request: NextRequest) {
   try {
     const body = await request.json();
     if (!body) return NextResponse.json({ error: true }, { status: 400 });
-    const res = await fetch(API_URL + "/tag/" + body.tagId, {
+    const res = await fetch(API_URL + "/blog/" + body.blogId, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

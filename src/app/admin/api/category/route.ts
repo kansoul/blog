@@ -10,7 +10,7 @@ export async function GET() {
       },
     });
     const result = await res.json();
-    return NextResponse.json(result);
+    return NextResponse.json(result, { status: result.code });
   } catch (error) {
     return NextResponse.json({ error: error }, { status: 500 });
   }

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { API_URL } from "@/config";
+import { API_URL, APP_URL } from "@/config";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 
@@ -13,7 +13,7 @@ export default function Gallery(props: { setMediaId: any; closeGallery: any }) {
   const [mediaChoose, setMediaChoose] = useState<any>(null);
 
   const handleGetMedia = async () => {
-    const result = await fetch(`api/media`, {
+    const result = await fetch(`${APP_URL}/admin/api/media`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + session?.user?.token,
@@ -36,11 +36,20 @@ export default function Gallery(props: { setMediaId: any; closeGallery: any }) {
     if (session?.user?.token) handleGetMedia();
   }, [session]);
 
+  const bodyScroll = document.documentElement.style;
+
+  useEffect(() => {
+    bodyScroll.overflow = "hidden";
+    return () => {
+      bodyScroll.overflow = "scroll";
+    };
+  }, []);
+
   const srcImage = (mediaId: string) => API_URL + "/media/" + mediaId;
 
   return (
     <div className="w-full h-full overflow-hidden p-2">
-      <div className="w-full h-[calc(100%-60px)] overflow-y-scroll">
+      <div className="w-full h-[calc(100%-60px)] overflow-y-auto">
         <div className="flex flex-wrap">
           {media &&
             media.length > 0 &&

@@ -229,7 +229,7 @@ export default function AdminLayout({
           </ul>
         </div>
       </aside>
-      <div className="h-[100vh] p-4 mt-14 sm:ml-64">{children}</div>
+      <div className="h-full p-4 mt-14 sm:ml-64">{children}</div>
     </SessionProvider>
   );
 }

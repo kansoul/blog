@@ -12,7 +12,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
       },
     });
     const result = await res.json();
-    return NextResponse.json(result);
+    return NextResponse.json(result, { status: result.code });
   } catch (error) {
     return NextResponse.json({ error: error }, { status: 500 });
   }
@@ -57,7 +57,7 @@ export async function PUT(request: NextRequest) {
     });
     const result = await res.json();
 
-    return NextResponse.json({ result }, { status: result.code });
+    return NextResponse.json(result, { status: result.code });
   } catch (error) {
     return NextResponse.json({ error: error }, { status: 500 });
   }
