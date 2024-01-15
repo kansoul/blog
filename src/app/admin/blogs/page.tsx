@@ -21,6 +21,21 @@ export default function BlogsManagement() {
     setBlogs(data.data);
   };
 
+  const deleteBlog = async (id: string) => {
+    const result = await fetch("/admin/api/blog", {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + session?.user?.token,
+      },
+      body: JSON.stringify({
+        blogId: id,
+      }),
+    });
+    if (result.ok) {
+      handleGetBlogs();
+    }
+  };
+
   useEffect(() => {
     if (session?.user?.token) handleGetBlogs();
 
@@ -181,7 +196,7 @@ export default function BlogsManagement() {
                           </button>
                           <button
                             type="button"
-                            onClick={() => {}}
+                            onClick={() => deleteBlog(val._id)}
                             className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
                           >
                             <svg

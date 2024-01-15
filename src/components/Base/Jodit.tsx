@@ -55,6 +55,7 @@ const Jodit = ({ content, setContent, token }: any) => {
         },
         headers: {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
         },
       },
     }),

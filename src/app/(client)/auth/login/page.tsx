@@ -2,7 +2,7 @@
 
 import ButtonLiner from "@/components/ui/button-liner";
 import { loginSchema } from "@/schema/userSchema";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -14,6 +14,7 @@ import AlertError from "@/components/Base/Alert";
 import useLogout from "@/hooks/useLogout";
 
 export default function Login() {
+  const { data: session } = useSession();
   const router = useRouter();
   const param = useSearchParams();
   const registerSuccess = param.get("success");
@@ -42,10 +43,11 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (showMessageError) {
+    if (showMessageError || session?.user.token) {
       handleLogout();
     }
-  }, []);
+    // eslint-disable-next-line
+  }, [session]);
 
   return (
     <div className="mx-auto text-center flex flex-col items-center relative">
