@@ -153,7 +153,11 @@ export default function CreateBlog() {
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                 Content
               </label>
-              <Jodit content={content || ""} setContent={setContent} />
+              <Jodit
+                content={content || ""}
+                setContent={setContent}
+                token={session?.user.token}
+              />
               {errors?.content?.message && (
                 <p className="text-sm text-red-500">
                   {errors?.content?.message as string}

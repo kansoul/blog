@@ -28,9 +28,7 @@ const authOptions: AuthOptions = {
               password,
             }),
           });
-          console.log(res);
           const user = await res.json();
-          console.log(user);
 
           if (!user.error && user?.data) {
             return user?.data;
