@@ -1,9 +1,9 @@
-import { Post } from "@/types/Blog";
+import { Blog } from "@/types/Blog";
 import PostReview from "../Base/PostReview";
 import TitleOfSection from "../Base/TitleOfSection";
 import LeftContent from "../LeftContent";
 
-export default function RecentPosts(props: { posts: Post[] }) {
+export default function RecentPosts(props: { posts: Blog[] }) {
   const { posts } = props;
 
   return (
@@ -13,9 +13,9 @@ export default function RecentPosts(props: { posts: Post[] }) {
           mainTitle="Recent posts"
           subTitle="Don't miss the latest trends"
         />
-        {posts.map((value) => (
-          <PostReview key={value?.title?.rendered} post={value} />
-        ))}
+        {posts &&
+          posts.length > 0 &&
+          posts.map((value) => <PostReview key={value?.title} post={value} />)}
       </div>
       <LeftContent />
     </div>

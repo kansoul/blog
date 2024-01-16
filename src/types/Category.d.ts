@@ -5,4 +5,5 @@ export interface Category {
   slug: string;
   description: string;
   created_at?: Date;
+  count?: string
 }

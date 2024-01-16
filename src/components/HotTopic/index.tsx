@@ -5,53 +5,12 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { Category } from "@/types/Category";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 
-export default function HotTopic() {
-  const hotTopics = [
-    {
-      imgUrl: "/images/topics/img_1.jpg",
-      tag: "AI Generate",
-      topicCount: 10,
-    },
-    {
-      imgUrl: "/images/topics/img_2.png",
-      tag: "Laravel",
-      topicCount: 23,
-    },
-    {
-      imgUrl: "/images/topics/img_3.jpg",
-      tag: "ReactJs",
-      topicCount: 41,
-    },
-    {
-      imgUrl: "/images/topics/img.png",
-      tag: "Javascript",
-      topicCount: 1,
-    },
-    {
-      imgUrl: "/images/topics/img_1.jpg",
-      tag: "NextJs",
-      topicCount: 27,
-    },
-    {
-      imgUrl: "/images/topics/img_3.jpg",
-      tag: "Flutter",
-      topicCount: 8,
-    },
-    {
-      imgUrl: "/images/topics/img_2.png",
-      tag: "Tailwind",
-      topicCount: 1,
-    },
-    {
-      imgUrl: "/images/topics/img_3.jpg",
-      tag: "Others",
-      topicCount: 5,
-    },
-  ];
-
+export default function HotTopic(props: { categories: Category[] }) {
+  const { categories } = props;
   return (
     <div className="mb-[70px] animate__animated animate__fadeInUp relative z-20">
       <div className="lg:flex p-6 border rounded-[8px] border-[#C2D4EE] bg-[#E8EDF5] dark:bg-[#131C31] dark:border-[#222F43]">
@@ -84,33 +43,34 @@ export default function HotTopic() {
             className="w-full text-center"
           >
             <CarouselContent>
-              {hotTopics.map((value, index) => (
-                <CarouselItem
-                  key={`Carouse ${index}`}
-                  className="md:basis-1/3 sm:basis-1/2"
-                >
-                  <div className="m-2 w-full h-[250px] cursor-pointer relative rounded-md overflow-hidden">
-                    <div className="card-info z-20 peer">
-                      <div className="absolute bottom-0 left-0 p-[15px] text-left">
-                        <h6 className="text-[#F9FBFF] dark:text-[#B9E0F2] mb-2 text-base font-bold">
-                          {value.tag}
-                        </h6>
-                        <p className="text-xs text-[#708AB0] dark:text-[#94A9C9]">
-                          {value.topicCount} Articles
-                        </p>
+              {categories &&
+                categories.map((value, index) => (
+                  <CarouselItem
+                    key={`Carouse ${index}`}
+                    className="md:basis-1/3 sm:basis-1/2"
+                  >
+                    <div className="m-2 w-full h-[250px] cursor-pointer relative rounded-md overflow-hidden">
+                      <div className="card-info z-20 peer">
+                        <div className="absolute bottom-0 left-0 p-[15px] text-left">
+                          <h6 className="text-[#F9FBFF] dark:text-[#B9E0F2] mb-2 text-base font-bold">
+                            {value.name}
+                          </h6>
+                          <p className="text-xs text-[#708AB0] dark:text-[#94A9C9]">
+                            {value.count} Articles
+                          </p>
+                        </div>
                       </div>
+                      <Image
+                        alt={value.description}
+                        src={value.name}
+                        width="0"
+                        height="0"
+                        sizes="100vw"
+                        className="object-cover w-full h-full transform transition-transform duration-300 peer-hover:scale-110"
+                      />
                     </div>
-                    <Image
-                      alt={value.tag}
-                      src={value.imgUrl}
-                      width="0"
-                      height="0"
-                      sizes="100vw"
-                      className="object-cover w-full h-full transform transition-transform duration-300 peer-hover:scale-110"
-                    />
-                  </div>
-                </CarouselItem>
-              ))}
+                  </CarouselItem>
+                ))}
             </CarouselContent>
           </Carousel>
         </div>

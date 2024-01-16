@@ -37,3 +37,15 @@ export const changeTextToSlug = (text: string) => {
 
   return formattedString;
 };
+
+export const getFirstParagraphContent = (htmlString: string) => {
+  const startIndex = htmlString.indexOf("<p>");
+  const endIndex = htmlString.indexOf("</p>", startIndex);
+
+  if (startIndex !== -1 && endIndex !== -1) {
+    const content = htmlString.substring(startIndex + 3, endIndex);
+    return content;
+  } else {
+    return null;
+  }
+};

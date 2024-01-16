@@ -5,12 +5,24 @@ import HotTopic from "@/components/HotTopic";
 import Introduce from "@/components/Introduce";
 import PopularTag from "@/components/PopularTag";
 import RecentPosts from "@/components/RecentPosts";
+import { APP_URL } from "@/config";
 import { Blog } from "@/types/Blog";
 import "animate.css";
 
-export default async function Home() {
-  const posts: Blog[] = [];
+async function getData(type: string) {
+  const result = await fetch(`${APP_URL}/api/${type}`, {
+    method: "GET",
+  });
+  if (!result.ok) {
+    throw new Error(`Error fetching ${type}`);
+  }
+  const data = await result.json();
+  return data.data;
+}
 
+export default async function Home() {
+  const promises = ["blogs", "tags", "categories"].map((type) => getData(type));
+  const [posts, tags, categories] = await Promise.all(promises);
   return (
     <>
       <Header />
@@ -18,9 +30,9 @@ export default async function Home() {
         <div className="w-0 xl:w-1/12"></div>
         <div className="w-full xl:w-10/12 relative z-10">
           <Introduce />
-          <HotTopic />
+          <HotTopic categories={categories} />
           <EditorPicked />
-          <PopularTag />
+          <PopularTag tags={tags} />
           <RecentPosts posts={posts} />
         </div>
       </div>
