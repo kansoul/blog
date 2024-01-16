@@ -2,6 +2,7 @@
 
 import FileUpload from "@/components/FileUpload";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Media } from "@/types/Media";
 import { srcImage } from "@/utils/image";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -10,8 +11,8 @@ import { useEffect, useState } from "react";
 export default function MediaManagement() {
   const { data: session } = useSession();
 
-  const [media, setMedia] = useState<any>([]);
-  const [imageUpdate, setImageUpdate] = useState<any>(null);
+  const [media, setMedia] = useState<Media[]>([]);
+  const [imageUpdate, setImageUpdate] = useState<Media | null>(null);
 
   const [openCreateMedia, setOpenCreateMedia] = useState<boolean>(false);
 
@@ -44,7 +45,7 @@ export default function MediaManagement() {
     <div className="flex flex-wrap">
       {media &&
         media.length > 0 &&
-        media.map((value: any) => (
+        media.map((value) => (
           <div key={value._id} className="p-2 w-1/5 h-[300px]">
             <div
               className="w-full h-full cursor-pointer relative rounded-md overflow-hidden"

@@ -29,8 +29,7 @@ const authOptions: AuthOptions = {
             }),
           });
           const user = await res.json();
-
-          if (!user.error && user?.data) {
+          if (!user?.error && user?.data) {
             return user?.data;
           }
           return null;

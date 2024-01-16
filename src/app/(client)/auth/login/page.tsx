@@ -43,11 +43,11 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (showMessageError || session?.user.token) {
+    if (showMessageError || session?.user?.token) {
       handleLogout();
     }
     // eslint-disable-next-line
-  }, [session]);
+  }, []);
 
   return (
     <div className="mx-auto text-center flex flex-col items-center relative">

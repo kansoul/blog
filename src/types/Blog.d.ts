@@ -1,14 +1,17 @@
+import { Category } from "./Category";
+import { Tag } from "./Tag";
+
 export interface Blog {
-  id: number;
+  _id: string;
   slug: string;
   featuredMedia: string;
-  categories: string[];
-  tags: string[];
+  category: Category;
+  tags: Tag[];
   title: string;
   description: string;
   content: string;
   status: string;
-  replies: string[];
-  createdAt: Date;
-  updatedAt: Date;
+  replies?: string[];
+  createdAt?: Date;
+  updatedAt?: Date;
 }

@@ -4,13 +4,14 @@ import Image from "next/image";
 import { API_URL, APP_URL } from "@/config";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
+import { Media } from "@/types/Media";
 
 export default function Gallery(props: { setMediaId: any; closeGallery: any }) {
   const { setMediaId, closeGallery } = props;
   const { data: session } = useSession();
 
-  const [media, setMedia] = useState<any>([]);
-  const [mediaChoose, setMediaChoose] = useState<any>(null);
+  const [media, setMedia] = useState<Media[]>([]);
+  const [mediaChoose, setMediaChoose] = useState<Media | null>(null);
 
   const handleGetMedia = async () => {
     const result = await fetch(`${APP_URL}/admin/api/media`, {
@@ -53,7 +54,7 @@ export default function Gallery(props: { setMediaId: any; closeGallery: any }) {
         <div className="flex flex-wrap">
           {media &&
             media.length > 0 &&
-            media.map((value: any) => (
+            media.map((value) => (
               <div
                 key={value._id}
                 className={`p-3 w-1/5 h-[300px] ${

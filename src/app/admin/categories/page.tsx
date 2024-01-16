@@ -2,6 +2,7 @@
 
 import CreateUpdateModal from "@/components/CreateUpdateModal";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Category } from "@/types/Category";
 import { srcImage } from "@/utils/image";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -9,8 +10,8 @@ import { useEffect, useState } from "react";
 
 export default function CategoriesManagement() {
   const { data: session } = useSession();
-  const [categories, setCategories] = useState<any>([]);
-  const [categoryUpdate, setCategoryUpdate] = useState<any>(null);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [categoryUpdate, setCategoryUpdate] = useState<Category | null>(null);
   const [openCategoryModal, setOpenCategoryModal] = useState<boolean>(false);
 
   const handleGetCategories = async () => {
@@ -165,7 +166,7 @@ export default function CategoriesManagement() {
                 <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                   {categories &&
                     categories.length > 0 &&
-                    categories.map((val: any, index: number) => (
+                    categories.map((val, index) => (
                       <tr
                         key={`Product ${index}`}
                         className="hover:bg-gray-100 dark:hover:bg-gray-700"

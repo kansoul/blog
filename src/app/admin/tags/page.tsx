@@ -2,6 +2,7 @@
 
 import CreateUpdateModal from "@/components/CreateUpdateModal";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Tag } from "@/types/Tag";
 import { srcImage } from "@/utils/image";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -9,8 +10,8 @@ import { useEffect, useState } from "react";
 
 export default function TagManagement() {
   const { data: session } = useSession();
-  const [tags, setTags] = useState<any>([]);
-  const [tagUpdate, setTagUpdate] = useState<any>(null);
+  const [tags, setTags] = useState<Tag[]>([]);
+  const [tagUpdate, setTagUpdate] = useState<Tag | null>(null);
   const [openTagModal, setOpenTagModal] = useState<boolean>(false);
 
   const handleGetTags = async () => {
@@ -159,7 +160,7 @@ export default function TagManagement() {
                 <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                   {tags &&
                     tags.length > 0 &&
-                    tags.map((val: any, index: number) => (
+                    tags.map((val, index) => (
                       <tr
                         key={`Product ${index}`}
                         className="hover:bg-gray-100 dark:hover:bg-gray-700"
