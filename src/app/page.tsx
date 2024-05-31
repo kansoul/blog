@@ -18,18 +18,18 @@ export default async function Home() {
   ]);
   return (
     <>
-      <Header />
+      <Header categories={categories} />
       <div className="container flex flex-row color-home">
         <div className="w-0 xl:w-1/12"></div>
         <div className="w-full xl:w-10/12 relative z-10">
           <Introduce />
           <HotTopic categories={categories} />
-          <EditorPicked />
+          <EditorPicked posts={posts} />
           <PopularTag tags={tags} />
           <RecentPosts posts={posts} />
         </div>
       </div>
-      <Footer />
+      <Footer categories={categories} />
     </>
   );
 }

@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Author from "../Base/Author";
+import { Tag } from "@/types/Tag";
 
 interface CardBlogProps {
   size: "L" | "XL";
   srcImage: string;
   cardTitle: string;
-  cardTag: string;
+  cardTag: Tag[];
 }
 
 export default function CardBlog(props: CardBlogProps) {
@@ -39,7 +40,14 @@ export default function CardBlog(props: CardBlogProps) {
         />
       </a>
       <div className="w-full flex justify-between items-end mt-5 text-[#4E658A] dark:text-[#66768F] text-sm">
-        <p>#{cardTag}</p>
+        {cardTag.map((val) => (
+          <span
+            key={val.name}
+            className="hover:text-[#0ea5ea] dark:hover:text-[#0e9ad8] cursor-pointer"
+          >
+            #{val.name}
+          </span>
+        ))}
         <div className="flex justify-center items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"

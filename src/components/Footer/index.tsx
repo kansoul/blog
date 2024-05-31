@@ -1,7 +1,9 @@
+import { Category } from "@/types/Category";
 import Logo from "../Base/Logo";
 import ButtonLiner from "../ui/button-liner";
+import Link from "next/link";
 
-export default function Footer() {
+export default function Footer({ categories }: { categories: Category[] }) {
   return (
     <footer className="container w-full relative z-[10]">
       <div className="mx-auto min-h-[573px] border bg-[#E8EDF5] dark:bg-[#131C31] rounded-[48px] border-[#C2D4EE] dark:border-[#222F43] mt-[80px] lg:pt-[90px] pt-6 lg:px-[107px] px-7 pb-[51px]">
@@ -25,26 +27,13 @@ export default function Footer() {
               Categories
             </p>
             <div className="flex flex-wrap gap-y-[14px]">
-              {[
-                "Action",
-                "Animal",
-                "Business",
-                "Dental",
-                "Action",
-                "Animal",
-                "Business",
-                "Dental",
-                "Action",
-                "Animal",
-                "Business",
-                "Dental",
-              ].map((val, index) => (
+              {(categories || []).map((val, index) => (
                 <a
-                  key={val + index}
+                  key={val?._id + index}
                   href="#"
                   className="w-1/2 text-base text-[#708AB0] dark:text-[#94A9C9] hover:text-[#0ea5ea] hover:translate-x-2 transition-transform duration-300 ease-in-out"
                 >
-                  {val}
+                  {val?.name}
                 </a>
               ))}
             </div>
@@ -105,13 +94,14 @@ export default function Footer() {
         <div className="mt-10 flex items-center justify-between">
           <div className="text-base">
             <span className="text-[#344161] dark:text-[#B9E0F2]">
-              © 2023 Remade by{" "}
+              © 2024 Remade by{" "}
             </span>
             <span className="text-[#1CC2E7]">HoDoanIT.com</span>
           </div>
           <div className="flex">
-            <a
-              href="#"
+            <Link
+              href="https://www.facebook.com/ZaikDG/"
+              target="_blank"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -128,9 +118,10 @@ export default function Footer() {
                 />
               </svg>
               <span className="sr-only">Facebook page</span>
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="https://www.facebook.com/ZaikDG/"
+              target="_blank"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
             >
               <svg
@@ -143,9 +134,10 @@ export default function Footer() {
                 <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z" />
               </svg>
               <span className="sr-only">Discord community</span>
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="https://www.facebook.com/ZaikDG/"
+              target="_blank"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
             >
               <svg
@@ -162,9 +154,10 @@ export default function Footer() {
                 />
               </svg>
               <span className="sr-only">Twitter page</span>
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="https://www.facebook.com/ZaikDG/"
+              target="_blank"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
             >
               <svg
@@ -181,9 +174,10 @@ export default function Footer() {
                 />
               </svg>
               <span className="sr-only">GitHub account</span>
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="https://www.facebook.com/ZaikDG/"
+              target="_blank"
               className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
             >
               <svg
@@ -200,7 +194,7 @@ export default function Footer() {
                 />
               </svg>
               <span className="sr-only">Dribbble account</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -95,7 +95,7 @@ export default function Blogs() {
                   size={"L"}
                   srcImage={val.srcImage}
                   cardTitle={val.cardTitle}
-                  cardTag={val.cardTag}
+                  cardTag={[]}
                 />
               ))}
             </div>

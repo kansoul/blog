@@ -14,76 +14,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import Image from "next/image";
-
-const blogComponents: { title: string; href: string; description: string }[] = [
-  {
-    title: "ReactJS",
-    href: "/category",
-    description:
-      "Powerful JavaScript library for building user interfaces with seamless interactions.",
-  },
-  {
-    title: "NextJS",
-    href: "/category",
-    description:
-      "Efficiently preview content for sighted users behind links with NextJS.",
-  },
-  {
-    title: "Laravel",
-    href: "/category",
-    description:
-      "Visually and semantically separate content using the Laravel framework.",
-  },
-  {
-    title: "Flutter",
-    href: "/category",
-    description:
-      "Create visually stunning cross-platform mobile apps with Flutter's layered content.",
-  },
-  {
-    title: "Frameworks CSS",
-    href: "/category",
-    description:
-      "Easily design and style your projects with powerful frameworks.",
-  },
-  {
-    title: "See more",
-    href: "/blogs",
-    description:
-      "Explore additional resources and documentation for expanding your knowledge.",
-  },
-];
-
-// const resourcesComponents: {
-//   title: string;
-//   href: string;
-//   description: string;
-// }[] = [
-//   {
-//     title: "Tools and Languages",
-//     href: "/docs/primitives/alert-dialog",
-//     description:
-//       "Explore essential tools and programming languages to enhance your development workflow.",
-//   },
-//   {
-//     title: "Libraries and Frameworks",
-//     href: "/docs/primitives/hover-card",
-//     description:
-//       "Discover libraries and frameworks providing a visual preview for enriched content experiences.",
-//   },
-//   {
-//     title: "Programming Communities",
-//     href: "/docs/primitives/scroll-area",
-//     description:
-//       "Connect with like-minded individuals in visually and semantically diverse programming communities.",
-//   },
-//   {
-//     title: "Books and Documentation",
-//     href: "/docs/primitives/tabs",
-//     description:
-//       "Access a curated collection of layered content, organized into tab panels for efficient exploration.",
-//   },
-// ];
+import { Category } from "@/types/Category";
 
 const servicesComponents: {
   title: string;
@@ -116,7 +47,7 @@ const servicesComponents: {
   },
 ];
 
-export function NavigationMenuMain() {
+export function NavigationMenuMain({ categories }: { categories: Category[] }) {
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -170,15 +101,15 @@ export function NavigationMenuMain() {
           <NavigationMenuTrigger>Blogs</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {blogComponents.map((value) => (
-                <ListItem
-                  key={value.title}
-                  title={value.title}
-                  href={value.href}
-                >
+              {(categories || []).map((value) => (
+                <ListItem key={value._id} title={value.name} href={"/category"}>
                   {value.description}
                 </ListItem>
               ))}
+              <ListItem title="See more" href={"/category"}>
+                Explore additional resources and documentation for expanding
+                your knowledge.
+              </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>

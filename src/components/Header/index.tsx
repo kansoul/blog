@@ -11,8 +11,9 @@ import SearchButton from "./SearchButton";
 import { useEffect, useState } from "react";
 import { SessionProvider } from "next-auth/react";
 import Login from "./Login";
+import { Category } from "@/types/Category";
 
-export default function Header() {
+export default function Header({ categories }: { categories: Category[] }) {
   const scrolling = useScrollHeader();
   const [isOpenMenuMobile, setIsOpenMenuMobile] = useState<boolean>(false);
 
@@ -38,7 +39,7 @@ export default function Header() {
           <div className="container flex justify-between items-center mx-auto p-4">
             <Logo size="XL" />
             <nav className="hidden justify-between items-center w-[65%] lg:flex lg:w-auto lg:order-1 ">
-              <NavigationMenuMain />
+              <NavigationMenuMain categories={categories} />
             </nav>
             <div className="flex items-end justify-end lg:items-center max-w-[225px] lg:order-2">
               <SearchButton />

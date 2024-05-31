@@ -27,7 +27,7 @@ export default async function Category() {
         </div>
         <div className="w-full border-b text-[#708ab0] dark:text-[#94a9c9] mt-2.5 mb-[50px]" />
         <div className="mb-[70px]">
-          <ContentCards />
+          <ContentCards posts={[]} />
           <Pagination number={5} />
         </div>
         <PopularTag tags={tags || []} />

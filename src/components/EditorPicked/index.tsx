@@ -2,15 +2,16 @@ import Image from "next/image";
 import ContentCards from "../Base/ContentCards";
 import TitleOfSection from "../Base/TitleOfSection";
 import ButtonLiner from "../ui/button-liner";
+import { Blog } from "@/types/Blog";
 
-export default function EditorPicked() {
+export default function EditorPicked({ posts }: { posts: Blog[] }) {
   return (
     <div className="">
       <TitleOfSection
         mainTitle="Editor's picked"
         subTitle="Featured and highly rated articles"
       />
-      <ContentCards />
+      <ContentCards posts={posts} />
       <div className="flex flex-col justify-center items-center mt-[30px] mb-[84px]">
         <ButtonLiner className="rounded-[80px] px-8 py-4 mb-[50px]">
           Show More Posts -&gt;
