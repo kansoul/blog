@@ -35,6 +35,7 @@ export default function Gallery(props: { setMediaId: any; closeGallery: any }) {
 
   useEffect(() => {
     if (session?.user?.token) handleGetMedia();
+    // eslint-disable-next-line
   }, [session]);
 
   const bodyScroll = document.documentElement.style;
@@ -44,6 +45,7 @@ export default function Gallery(props: { setMediaId: any; closeGallery: any }) {
     return () => {
       bodyScroll.overflow = "scroll";
     };
+    // eslint-disable-next-line
   }, []);
 
   const srcImage = (mediaId: string) => API_URL + "/media/" + mediaId;

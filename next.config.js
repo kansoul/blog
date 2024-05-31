@@ -11,6 +11,11 @@ const nextConfig = {
         hostname: "localhost",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "api.hodoanit.com",
+        pathname: "**",
+      },
     ],
   },
 };

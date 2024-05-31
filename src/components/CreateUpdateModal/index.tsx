@@ -45,6 +45,7 @@ export default function CreateUpdateModal(props: {
     return () => {
       bodyScroll.overflow = "scroll";
     };
+    // eslint-disable-next-line
   }, []);
 
   const {

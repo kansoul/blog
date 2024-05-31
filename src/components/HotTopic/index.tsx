@@ -6,6 +6,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { Category } from "@/types/Category";
+import { srcImage } from "@/utils/image";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 
@@ -53,16 +54,16 @@ export default function HotTopic(props: { categories: Category[] }) {
                       <div className="card-info z-20 peer">
                         <div className="absolute bottom-0 left-0 p-[15px] text-left">
                           <h6 className="text-[#F9FBFF] dark:text-[#B9E0F2] mb-2 text-base font-bold">
-                            {value.name}
+                            {value?.name}
                           </h6>
                           <p className="text-xs text-[#708AB0] dark:text-[#94A9C9]">
-                            {value.count} Articles
+                            {value?.count} Articles
                           </p>
                         </div>
                       </div>
                       <Image
-                        alt={value.description}
-                        src={value.name}
+                        alt={value?.description}
+                        src={srcImage(value?.featuredMedia)}
                         width="0"
                         height="0"
                         sizes="100vw"

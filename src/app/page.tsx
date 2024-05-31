@@ -5,12 +5,11 @@ import HotTopic from "@/components/HotTopic";
 import Introduce from "@/components/Introduce";
 import PopularTag from "@/components/PopularTag";
 import RecentPosts from "@/components/RecentPosts";
-import { APP_URL } from "@/config";
-import { Blog } from "@/types/Blog";
+import { API_URL } from "@/config";
 import "animate.css";
 
 async function getData(type: string) {
-  const result = await fetch(`${APP_URL}/api/${type}`, {
+  const result = await fetch(`${API_URL}/${type}`, {
     method: "GET",
   });
   if (!result.ok) {

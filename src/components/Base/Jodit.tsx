@@ -9,7 +9,7 @@ const Jodit = ({ content, setContent, token }: any) => {
       readonly: false,
       enableDragAndDropFileToEditor: true,
       uploader: {
-        url: "http://localhost:3001/api/v1/upload",
+        url: `${API_URL}/api/v1/upload`,
         format: "json",
         method: "POST",
         queryBuild: function (data: any) {
@@ -59,6 +59,7 @@ const Jodit = ({ content, setContent, token }: any) => {
         },
       },
     }),
+    // eslint-disable-next-line
     []
   );
   return (
