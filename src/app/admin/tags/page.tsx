@@ -2,6 +2,7 @@
 
 import CreateUpdateModal from "@/components/CreateUpdateModal";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { deleteTag, getTags } from "@/services/tag";
 import { Tag } from "@/types/Tag";
 import { srcImage } from "@/utils/image";
 import { useSession } from "next-auth/react";
@@ -15,17 +16,8 @@ export default function TagManagement() {
   const [openTagModal, setOpenTagModal] = useState<boolean>(false);
 
   const handleGetTags = async () => {
-    const result = await fetch(`api/tag`, {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + session?.user?.token,
-      },
-    });
-    const data = await result.json();
-    if (data && data.error) {
-      return alert("Error fetching tag");
-    }
-    setTags(data.data);
+    const result = await getTags();
+    setTags(result);
   };
 
   useEffect(() => {
@@ -40,19 +32,9 @@ export default function TagManagement() {
     handleGetTags();
   };
 
-  const deleteTag = async (id: string) => {
-    const result = await fetch("/admin/api/tag", {
-      method: "DELETE",
-      headers: {
-        Authorization: "Bearer " + session?.user?.token,
-      },
-      body: JSON.stringify({
-        tagId: id,
-      }),
-    });
-    if (result.ok) {
-      refetchData();
-    }
+  const removeTag = async (id: string) => {
+    const result = await deleteTag(id, session?.user?.token || "");
+    refetchData();
   };
 
   return (
@@ -230,7 +212,7 @@ export default function TagManagement() {
                           </button>
                           <button
                             type="button"
-                            onClick={() => deleteTag(val?._id)}
+                            onClick={() => removeTag(val?._id)}
                             className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
                           >
                             <svg

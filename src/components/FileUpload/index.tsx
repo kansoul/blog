@@ -13,6 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import InputForm from "../Base/Form/InputForm";
 import TextareaForm from "../Base/Form/TextareaForm";
+import { createMedia, deleteMedia, putMedia } from "@/services/media";
 
 export default function FileUpload(props: {
   imageUpdate?: any;
@@ -51,17 +52,8 @@ export default function FileUpload(props: {
 
   const uploadImage = async (data: any) => {
     data.type = "MEDIA";
-    const result = await fetch("/admin/api/media", {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (result.ok) {
-      refetch();
-    }
+    const result = await createMedia(token, data);
+    refetch();
   };
 
   const updateImage = async (data: any) => {
@@ -70,34 +62,15 @@ export default function FileUpload(props: {
       type: "MEDIA",
       title: data.title,
       description: data.description,
-      mediaId: imageUpdate._id,
     };
-    const result = await fetch("/admin/api/media", {
-      method: "PUT",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-      body: JSON.stringify(mediaUpdate),
-    });
-    if (result.ok) {
-      refetch();
-    }
+    const result = await putMedia(imageUpdate._id, token, mediaUpdate);
+    refetch();
   };
 
   const deleteImage = async () => {
-    const result = await fetch("/admin/api/media", {
-      method: "DELETE",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-      body: JSON.stringify({
-        mediaId: imageUpdate._id,
-      }),
-    });
-    if (result.ok) {
-      refetch();
-      closePopup(false);
-    }
+    const result = await deleteMedia(imageUpdate._id, token);
+    refetch();
+    closePopup(false);
   };
 
   return (

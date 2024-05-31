@@ -5,23 +5,17 @@ import HotTopic from "@/components/HotTopic";
 import Introduce from "@/components/Introduce";
 import PopularTag from "@/components/PopularTag";
 import RecentPosts from "@/components/RecentPosts";
-import { API_URL } from "@/config";
+import { getBlogs } from "@/services/blog";
+import { getCategories } from "@/services/category";
+import { getTags } from "@/services/tag";
 import "animate.css";
 
-async function getData(type: string) {
-  const result = await fetch(`${API_URL}/${type}`, {
-    method: "GET",
-  });
-  if (!result.ok) {
-    throw new Error(`Error fetching ${type}`);
-  }
-  const data = await result.json();
-  return data.data;
-}
-
 export default async function Home() {
-  const promises = ["blogs", "tags", "categories"].map((type) => getData(type));
-  const [posts, tags, categories] = await Promise.all(promises);
+  const [posts, tags, categories] = await Promise.all([
+    getBlogs(),
+    getTags(),
+    getCategories(),
+  ]);
   return (
     <>
       <Header />

@@ -20,6 +20,8 @@ import Gallery from "../Base/Gallery/Gallery";
 import ButtonLiner from "../ui/button-liner";
 import { tagSchema } from "@/schema/tagSchema";
 import { srcImage } from "@/utils/image";
+import { createCategory, putCategory } from "@/services/category";
+import { createTag, putTag } from "@/services/tag";
 
 export default function CreateUpdateModal(props: {
   itemUpdate?: any;
@@ -58,33 +60,29 @@ export default function CreateUpdateModal(props: {
     ...(itemUpdate ? { defaultValues: itemUpdate } : {}),
   });
 
-  const sendRequest = async (method: string, data: any) => {
+  const sendRequest = async (data: any, isCreated?: boolean) => {
     try {
       data.slug = changeTextToSlug(data.name);
-      const result = await fetch(`/admin/api/${type}`, {
-        method,
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-        body: JSON.stringify(data),
-      });
+      const result = isCreated
+        ? type === "category"
+          ? await createCategory(token, data)
+          : await createTag(token, data)
+        : type === "category"
+        ? await putCategory(itemUpdate?._id, token, data)
+        : await putTag(itemUpdate?._id, token, data);
 
-      if (result.ok) {
-        refetch();
-      } else {
-        alert("An error occurred!");
-      }
+      refetch();
     } catch (error) {
       alert("An error occurred!");
     }
   };
 
   const update = async (data: any) => {
-    await sendRequest("PUT", data);
+    await sendRequest(data);
   };
 
   const create = async (data: any) => {
-    await sendRequest("POST", data);
+    await sendRequest(data, true);
   };
 
   const handleSetImage = (id?: string) => {

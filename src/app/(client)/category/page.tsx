@@ -2,24 +2,10 @@ import Breadcrumb from "@/components/Base/Breadcrumb";
 import ContentCards from "@/components/Base/ContentCards";
 import Pagination from "@/components/Base/Pagination";
 import PopularTag from "@/components/PopularTag";
-import { API_URL } from "@/config";
-
-async function getTags() {
-  const result = await fetch(API_URL + "/tags", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (!result.ok) {
-    throw new Error(`Error fetching tags`);
-  }
-  const data = await result.json();
-  return data.data || [];
-}
+import { getTags } from "@/services/tag";
 
 export default async function Category() {
-  const categories = await getTags();
+  const tags = await getTags();
   return (
     <div className="container flex flex-row color-home">
       <div className="w-0 xl:w-1/12"></div>
@@ -44,7 +30,7 @@ export default async function Category() {
           <ContentCards />
           <Pagination number={5} />
         </div>
-        <PopularTag tags={categories || []} />
+        <PopularTag tags={tags || []} />
       </div>
     </div>
   );

@@ -2,6 +2,7 @@
 
 import FileUpload from "@/components/FileUpload";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { getAllMedia } from "@/services/media";
 import { Media } from "@/types/Media";
 import { srcImage } from "@/utils/image";
 import { useSession } from "next-auth/react";
@@ -17,17 +18,8 @@ export default function MediaManagement() {
   const [openCreateMedia, setOpenCreateMedia] = useState<boolean>(false);
 
   const handleGetMedia = async () => {
-    const result = await fetch(`api/media`, {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + session?.user?.token,
-      },
-    });
-    const data = await result.json();
-    if (data && data.error) {
-      return alert("Error fetching media");
-    }
-    setMedia(data.data);
+    const result = await getAllMedia(session?.user?.token || "");
+    setMedia(result);
   };
   useEffect(() => {
     if (session?.user?.token) handleGetMedia();

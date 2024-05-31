@@ -1,5 +1,6 @@
 "use client";
 
+import { getBlogs, deleteBlog } from "@/services/blog";
 import { Blog } from "@/types/Blog";
 import { srcImage } from "@/utils/image";
 import { useSession } from "next-auth/react";
@@ -12,27 +13,13 @@ export default function BlogsManagement() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
   const handleGetBlogs = async () => {
-    const result = await fetch(`api/blog`, {
-      method: "GET",
-    });
-    const data = await result.json();
-    if (data && data.error) {
-      return alert("Error fetching blog");
-    }
-    setBlogs(data.data);
+    const result = await getBlogs();
+    setBlogs(result);
   };
 
-  const deleteBlog = async (id: string) => {
-    const result = await fetch("/admin/api/blog", {
-      method: "DELETE",
-      headers: {
-        Authorization: "Bearer " + session?.user?.token,
-      },
-      body: JSON.stringify({
-        blogId: id,
-      }),
-    });
-    if (result.ok) {
+  const removeBlogs = async (id: string) => {
+    const result = await deleteBlog(id, session?.user?.token || "");
+    if (result) {
       handleGetBlogs();
     }
   };
@@ -198,7 +185,7 @@ export default function BlogsManagement() {
                           </Link>
                           <button
                             type="button"
-                            onClick={() => deleteBlog(val._id)}
+                            onClick={() => removeBlogs(val._id)}
                             className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
                           >
                             <svg

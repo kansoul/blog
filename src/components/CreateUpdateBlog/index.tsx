@@ -6,8 +6,10 @@ import InputForm from "@/components/Base/Form/InputForm";
 import Gallery from "@/components/Base/Gallery/Gallery";
 import ButtonLiner from "@/components/ui/button-liner";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { APP_URL } from "@/config";
 import { blogSchema } from "@/schema/blogSchema";
+import { createBlog, putBlog } from "@/services/blog";
+import { getCategories } from "@/services/category";
+import { getTags } from "@/services/tag";
 import { Blog } from "@/types/Blog";
 import { Category } from "@/types/Category";
 import { Tag } from "@/types/Tag";
@@ -19,7 +21,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 const Jodit = dynamic(() => import("@/components/Base/Jodit"), { ssr: false });
 
 export default function CreateUpdateBlog(props: {
@@ -34,9 +36,9 @@ export default function CreateUpdateBlog(props: {
   const [categories, setCategories] = useState<Category[]>([]);
   const {
     register,
-    control,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm({
     mode: "onBlur",
@@ -44,11 +46,11 @@ export default function CreateUpdateBlog(props: {
     ...(itemUpdate ? { defaultValues: itemUpdate } : {}),
   });
 
-  const selectCategory = useWatch({ control, name: "category" });
-  const selectTags = useWatch({ control, name: "tags" });
-  const content = useWatch({ control, name: "content" });
-  const image = useWatch({ control, name: "featuredMedia" });
-  const status = useWatch({ control, name: "status" });
+  const selectCategory = watch("category");
+  const selectTags = watch("tags");
+  const content = watch("content");
+  const image = watch("featuredMedia");
+  const status = watch("status");
 
   const setSelectCategory = (value: any) => {
     setValue("category", value);
@@ -70,29 +72,22 @@ export default function CreateUpdateBlog(props: {
     setValue("status", id);
   };
 
-  const handleGetTagAndCategory = async (type: string, setType: any) => {
+  const handleGetTagAndCategory = async () => {
     try {
-      const result = await fetch(`${APP_URL}/admin/api/${type}`, {
-        method: "GET",
-      });
-
-      if (!result.ok) {
-        throw new Error("Error fetching");
-      }
-
-      const data = await result.json();
-      setType(data.data);
+      const tags = await getTags();
+      setTags(tags);
+      const categories = await getCategories();
+      setCategories(categories);
     } catch (error) {
       alert("Error fetching");
     }
   };
 
   useEffect(() => {
-    handleGetTagAndCategory("category", setCategories);
-    handleGetTagAndCategory("tag", setTags);
+    handleGetTagAndCategory();
   }, []);
 
-  const sendRequest = async (method: string, data: any, url: string) => {
+  const sendRequest = async (data: any, isCreated?: boolean) => {
     try {
       data.slug = changeTextToSlug(data.title);
       data.category = data.category._id;
@@ -102,33 +97,27 @@ export default function CreateUpdateBlog(props: {
       } else {
         data.author = session?.user._id;
       }
-      const result = await fetch(url, {
-        method,
-        headers: {
-          Authorization: "Bearer " + session?.user?.token,
-        },
-        body: JSON.stringify(data),
-      });
-      if (result.ok) {
-        return router.push("/admin/blogs");
-      } else {
-        alert("An error occurred!");
-      }
+
+      const result = isCreated
+        ? await createBlog(session?.user?.token || "", data)
+        : await putBlog(
+            itemUpdate?._id || "",
+            session?.user?.token || "",
+            data
+          );
+
+      return router.push("/admin/blogs");
     } catch (error) {
-      alert("An error occurred!");
+      alert("Cannot create/edit blog");
     }
   };
 
   const create = async (data: any) => {
-    await sendRequest("POST", data, `${APP_URL}/admin/api/blog`);
+    await sendRequest(data, true);
   };
 
   const update = async (data: any) => {
-    await sendRequest(
-      "PUT",
-      data,
-      `${APP_URL}/admin/api/blog/${itemUpdate?._id}`
-    );
+    await sendRequest(data);
   };
 
   return (

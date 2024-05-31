@@ -5,6 +5,7 @@ import { API_URL, APP_URL } from "@/config";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { Media } from "@/types/Media";
+import { getAllMedia } from "@/services/media";
 
 export default function Gallery(props: { setMediaId: any; closeGallery: any }) {
   const { setMediaId, closeGallery } = props;
@@ -14,17 +15,8 @@ export default function Gallery(props: { setMediaId: any; closeGallery: any }) {
   const [mediaChoose, setMediaChoose] = useState<Media | null>(null);
 
   const handleGetMedia = async () => {
-    const result = await fetch(`${APP_URL}/admin/api/media`, {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + session?.user?.token,
-      },
-    });
-    const data = await result.json();
-    if (data && data.error) {
-      alert("Error fetching media");
-    }
-    setMedia(data.data);
+    const result = await getAllMedia(session?.user?.token || "");
+    setMedia(result);
   };
 
   const chooseImage = () => {
@@ -80,7 +72,7 @@ export default function Gallery(props: { setMediaId: any; closeGallery: any }) {
                     </div>
                   </div>
                   <Image
-                    alt={value.description}
+                    alt={value.description || "No description"}
                     src={srcImage(value._id)}
                     width="0"
                     height="0"
