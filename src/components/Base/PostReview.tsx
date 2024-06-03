@@ -8,7 +8,7 @@ export default async function PostReview(props: { post: Blog }) {
   const { post } = props;
 
   return (
-    <Link href="/article">
+    <Link href={post.slug}>
       <div className="block sm:flex bg-transparent sm:mb-[60px] mb-20 cursor-default sm:h-[257.05px]">
         <Image
           className="object-cover flex-shrink-0 w-full sm:w-[270px] rounded-[16px] h-[257.05px] hover:-translate-y-1 transition-transform duration-300 ease-in-out cursor-pointer"
@@ -58,7 +58,10 @@ export default async function PostReview(props: { post: Blog }) {
                     d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                   />
                 </svg>
-                <p>{post?.createdAt && post?.createdAt.toDateString()}</p>
+                <p>
+                  {post?.created_at &&
+                    new Date(post?.created_at).toDateString()}
+                </p>
               </div>
             </div>
           </div>

@@ -12,6 +12,6 @@ export interface Blog {
   content: string;
   status: string;
   replies?: string[];
-  createdAt?: Date;
-  updatedAt?: Date;
+  created_at: Date;
+  updated_at?: Date;
 }

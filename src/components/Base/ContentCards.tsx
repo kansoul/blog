@@ -10,8 +10,9 @@ export default function ContentCards({ posts }: { posts: Blog[] }) {
           key={`Card blog ${index}`}
           cardTag={value?.tags}
           cardTitle={value?.title}
+          url={value.slug}
           srcImage={srcImage(value?.featuredMedia)}
-          size={index === 0 || index === 1 ? "XL" : "L"}
+          size={"L"}
         />
       ))}
     </div>

@@ -1,16 +1,18 @@
 import Image from "next/image";
 import Author from "../Base/Author";
 import { Tag } from "@/types/Tag";
+import Link from "next/link";
 
 interface CardBlogProps {
   size: "L" | "XL";
   srcImage: string;
   cardTitle: string;
   cardTag: Tag[];
+  url: string;
 }
 
 export default function CardBlog(props: CardBlogProps) {
-  const { size, srcImage, cardTitle, cardTag } = props;
+  const { size, srcImage, cardTitle, cardTag, url } = props;
 
   const styleOfCard = {
     L: {
@@ -29,7 +31,7 @@ export default function CardBlog(props: CardBlogProps) {
     <div
       className={`card cursor-pointer bg-[#E8EDF5] dark:bg-[#131C31] border border-[#E9EEF5] dark:border-[#222F43] rounded-lg p-[21px] shadow text-[#344161] dark:text-[#B9E0F2] hover:text-[#1cc2e7]  ${styleOfCard[size]["width"]} lg:mb-0 mb-4`}
     >
-      <a href="/article">
+      <Link href={url}>
         <Image
           className={`rounded-t-lg object-cover w-full ${styleOfCard[size]["image"]}`}
           src={srcImage}
@@ -38,16 +40,18 @@ export default function CardBlog(props: CardBlogProps) {
           sizes="100vw"
           alt={cardTitle}
         />
-      </a>
+      </Link>
       <div className="w-full flex justify-between items-end mt-5 text-[#4E658A] dark:text-[#66768F] text-sm">
-        {cardTag.map((val) => (
-          <span
-            key={val.name}
-            className="hover:text-[#0ea5ea] dark:hover:text-[#0e9ad8] cursor-pointer"
-          >
-            #{val.name}
-          </span>
-        ))}
+        <div className="flex gap-x-2">
+          {cardTag.map((val) => (
+            <span
+              key={val.name}
+              className="hover:text-[#0ea5ea] dark:hover:text-[#0e9ad8] cursor-pointer"
+            >
+              #{val.name}
+            </span>
+          ))}
+        </div>
         <div className="flex justify-center items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -66,13 +70,15 @@ export default function CardBlog(props: CardBlogProps) {
           <p>5 mins read</p>
         </div>
       </div>
-      <a href="/article" className="hover:text-[#0ea5ea]">
-        <h5
-          className={`mt-5 mb-6 font-bold tracking-tight ${styleOfCard[size]["title"]}`}
-        >
-          {cardTitle}
-        </h5>
-      </a>
+      <div className="min-h-[118px] pt-5 pb-2 ">
+        <Link href={url} className="hover:text-[#0ea5ea] min-h-[90px]">
+          <h5
+            className={`font-bold tracking-tight line-clamp-3 overflow-clip ${styleOfCard[size]["title"]}`}
+          >
+            {cardTitle}
+          </h5>
+        </Link>
+      </div>
       <div className="w-full flex justify-between items-center mt-5 text-[#4E658A] dark:text-[#66768F] text-sm">
         <Author />
         <div className="relative">

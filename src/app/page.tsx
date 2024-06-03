@@ -5,17 +5,24 @@ import HotTopic from "@/components/HotTopic";
 import Introduce from "@/components/Introduce";
 import PopularTag from "@/components/PopularTag";
 import RecentPosts from "@/components/RecentPosts";
-import { getBlogs } from "@/services/blog";
+import {
+  getBlogsEditorPicker,
+  getBlogsPopular,
+  getBlogsRecent,
+} from "@/services/blog";
 import { getCategories } from "@/services/category";
 import { getTags } from "@/services/tag";
 import "animate.css";
 
 export default async function Home() {
-  const [posts, tags, categories] = await Promise.all([
-    getBlogs(),
-    getTags(),
-    getCategories(),
-  ]);
+  const [editorPickerPost, recentPost, popularPost, tags, categories] =
+    await Promise.all([
+      getBlogsEditorPicker(),
+      getBlogsRecent(),
+      getBlogsPopular(),
+      getTags(),
+      getCategories(),
+    ]);
   return (
     <>
       <Header categories={categories} />
@@ -24,9 +31,9 @@ export default async function Home() {
         <div className="w-full xl:w-10/12 relative z-10">
           <Introduce />
           <HotTopic categories={categories} />
-          <EditorPicked posts={posts} />
+          <EditorPicked posts={editorPickerPost || []} />
           <PopularTag tags={tags} />
-          <RecentPosts posts={posts} />
+          <RecentPosts recentPost={recentPost} popularPost={popularPost} />
         </div>
       </div>
       <Footer categories={categories} />

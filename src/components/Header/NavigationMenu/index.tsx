@@ -77,7 +77,7 @@ export function NavigationMenuMain({ categories }: { categories: Category[] }) {
                       className="object-cover"
                     />
                     <div className="mb-2 mt-4 text-lg font-medium">
-                      HoDoanIT
+                      Ho Van Doan
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
                       About me
@@ -98,11 +98,15 @@ export function NavigationMenuMain({ categories }: { categories: Category[] }) {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Blogs</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
               {(categories || []).map((value) => (
-                <ListItem key={value._id} title={value.name} href={"/category"}>
+                <ListItem
+                  key={value._id}
+                  title={value.name}
+                  href={`/category/${value.slug}`}
+                >
                   {value.description}
                 </ListItem>
               ))}
@@ -134,11 +138,7 @@ export function NavigationMenuMain({ categories }: { categories: Category[] }) {
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
               {servicesComponents.map((value) => (
-                <ListItem
-                  key={value.title}
-                  title={value.title}
-                  href={value.href}
-                >
+                <ListItem key={value.title} title={value.title} href={"/"}>
                   {value.description}
                 </ListItem>
               ))}

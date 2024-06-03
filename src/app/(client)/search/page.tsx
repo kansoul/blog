@@ -77,7 +77,7 @@ export default function Search() {
       minuteForRead: "7 mins read",
     },
   ];
-
+  const breads = [{ value: "Search", url: "search" }];
   return (
     <div className="container flex flex-row color-home">
       <div className="w-0 xl:w-1/12"></div>
@@ -90,7 +90,7 @@ export default function Search() {
             We found 22 articles for &quot;Hello&quot; key word
           </p>
           <div className="flex flex-col items-center mt-6">
-            <Breadcrumb />
+            <Breadcrumb breads={breads} />
           </div>
         </div>
         <div className="w-full border-b text-[#708ab0] dark:text-[#94a9c9] mt-2.5 mb-[50px]" />

@@ -3,8 +3,11 @@ import PostReview from "../Base/PostReview";
 import TitleOfSection from "../Base/TitleOfSection";
 import LeftContent from "../LeftContent";
 
-export default function RecentPosts(props: { posts: Blog[] }) {
-  const { posts } = props;
+export default function RecentPosts(props: {
+  popularPost: Blog[];
+  recentPost: Blog[];
+}) {
+  const { popularPost, recentPost } = props;
 
   return (
     <div className="lg:flex">
@@ -13,11 +16,13 @@ export default function RecentPosts(props: { posts: Blog[] }) {
           mainTitle="Recent posts"
           subTitle="Don't miss the latest trends"
         />
-        {posts &&
-          posts.length > 0 &&
-          posts.map((value) => <PostReview key={value?.title} post={value} />)}
+        {recentPost &&
+          recentPost.length > 0 &&
+          recentPost.map((value) => (
+            <PostReview key={value?.title} post={value} />
+          ))}
       </div>
-      <LeftContent />
+      <LeftContent popularPost={popularPost} />
     </div>
   );
 }

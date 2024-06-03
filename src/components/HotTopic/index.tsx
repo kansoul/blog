@@ -9,6 +9,7 @@ import { Category } from "@/types/Category";
 import { srcImage } from "@/utils/image";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HotTopic(props: { categories: Category[] }) {
   const { categories } = props;
@@ -51,24 +52,26 @@ export default function HotTopic(props: { categories: Category[] }) {
                     className="md:basis-1/3 sm:basis-1/2"
                   >
                     <div className="m-2 w-full h-[250px] cursor-pointer relative rounded-md overflow-hidden">
-                      <div className="card-info z-20 peer">
-                        <div className="absolute bottom-0 left-0 p-[15px] text-left">
-                          <h6 className="text-[#F9FBFF] dark:text-[#B9E0F2] mb-2 text-base font-bold">
-                            {value?.name}
-                          </h6>
-                          <p className="text-xs text-[#708AB0] dark:text-[#94A9C9]">
-                            {value?.count} Articles
-                          </p>
+                      <Link href={`/category/${value?.slug}`}>
+                        <div className="card-info z-20 peer">
+                          <div className="absolute bottom-0 left-0 p-[15px] text-left">
+                            <h6 className="text-[#F9FBFF] dark:text-[#B9E0F2] mb-2 text-base font-bold">
+                              {value?.name}
+                            </h6>
+                            <p className="text-xs text-[#708AB0] dark:text-[#94A9C9]">
+                              {value?.count} Articles
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                      <Image
-                        alt={value?.description}
-                        src={srcImage(value?.featuredMedia)}
-                        width="0"
-                        height="0"
-                        sizes="100vw"
-                        className="object-cover w-full h-full transform transition-transform duration-300 peer-hover:scale-110"
-                      />
+                        <Image
+                          alt={value?.description}
+                          src={srcImage(value?.featuredMedia)}
+                          width="0"
+                          height="0"
+                          sizes="100vw"
+                          className="object-cover w-full h-full transform transition-transform duration-300 peer-hover:scale-110"
+                        />
+                      </Link>
                     </div>
                   </CarouselItem>
                 ))}

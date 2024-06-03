@@ -5,8 +5,8 @@ export const getCategories = async () => {
   return result;
 };
 
-export const getCategory = async (id: string) => {
-  const result = await serverApi(`category/${id}`, "GET");
+export const getCategory = async (slug: string) => {
+  const result = await serverApi(`category/${slug}`, "GET");
   return result;
 };
 

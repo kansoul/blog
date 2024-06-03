@@ -2,25 +2,42 @@ import Author from "@/components/Base/Author";
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import LeftContent from "@/components/LeftContent";
 import ButtonLiner from "@/components/ui/button-liner";
-import Image from "next/image";
-import { data } from "./data";
+import { getBlog, getBlogs, getBlogsPopular } from "@/services/blog";
+import { Blog } from "@/types/Blog";
+import Link from "next/link";
 
-export default function Article() {
+export async function generateStaticParams() {
+  const posts = await getBlogs();
+
+  return posts.map((post: Blog) => ({
+    slug: post.slug,
+  }));
+}
+
+export default async function Article({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const blog: Blog = await getBlog(params.slug);
+  const blogPopular: Blog[] = await getBlogsPopular();
   let commentList = [
     "White white dreamy drama tically place everything although. Place out apartment afternoon whimsical kinder, little romantic joy we flowers handmade.",
     "White white dreamy drama tically place everything although. Place out apartment afternoon whimsical kinder, little romantic joy we flowers handmade.",
     "White white dreamy drama tically place everything although. Place out apartment afternoon whimsical kinder, little romantic joy we flowers handmade.",
   ];
 
+  const breads = [{ value: blog.title, url: blog.slug }];
+
   return (
     <div className="container flex flex-row color-home">
       <div className="w-0 xl:w-1/12"></div>
       <div className="w-full xl:w-10/12 relative z-10">
         <div className="py-6 border-b border-[#c2d4ee] dark:border-[#222f43] w-full">
-          <Breadcrumb />
+          <Breadcrumb breads={breads} />
         </div>
         <p className="text-[30px] sm:text-[45px] lg:w-3/4 font-bold mb-5 text-left text-linear mt-[50px]">
-          Digital Design That Will Help You Start Your Business
+          {blog.title}
         </p>
         <div className="sm:flex">
           <div className="sm:w-3/4 sm:border-r border-[#c2d4ee] dark:border-[#222f43] py-3 sm:mr-4">
@@ -31,8 +48,9 @@ export default function Article() {
               Share
             </p>
             <div className="flex ml-4">
-              <a
-                href="#"
+              <Link
+                href="https://www.facebook.com/ZaikDG/"
+                target="_blank"
                 className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
               >
                 <svg
@@ -49,9 +67,10 @@ export default function Article() {
                   />
                 </svg>
                 <span className="sr-only">Facebook page</span>
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="https://www.facebook.com/ZaikDG/"
+                target="_blank"
                 className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
               >
                 <svg
@@ -64,9 +83,10 @@ export default function Article() {
                   <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z" />
                 </svg>
                 <span className="sr-only">Discord community</span>
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="https://www.facebook.com/ZaikDG/"
+                target="_blank"
                 className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
               >
                 <svg
@@ -83,9 +103,10 @@ export default function Article() {
                   />
                 </svg>
                 <span className="sr-only">Twitter page</span>
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="https://www.facebook.com/ZaikDG/"
+                target="_blank"
                 className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
               >
                 <svg
@@ -102,7 +123,7 @@ export default function Article() {
                   />
                 </svg>
                 <span className="sr-only">GitHub account</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -110,75 +131,19 @@ export default function Article() {
           <div className="content lg:w-2/3 w-full dark:content-dark border-b border-[#c2d4ee] dark:border-[#222f43]">
             <div
               dangerouslySetInnerHTML={{
-                __html: data,
+                __html: blog.content || "",
               }}
             />
-            <p>
-              The fancy moon going in little artist painting. Thirty days of
-              lavender in the dreamy light inside. Other perfect oh plants, for
-              and again. I’ve honey feeling. Caring dreamland projects
-              noteworthy than minimal, their it oh pretty feeling may. Include
-              pink be.
-            </p>
-            <Image
-              src={"/images/avatar.png"}
-              alt={"Anh test"}
-              height={400}
-              width={400}
-            />
-            <p>
-              The fancy moon going in little artist painting. Thirty days of
-              lavender in the dreamy light inside. Other perfect oh plants, for
-              and again. I’ve honey feeling. Caring dreamland projects
-              noteworthy than minimal, their it oh pretty feeling may. Include
-              pink be.
-            </p>
-            <h2>Use your headings</h2>
-            <p>
-              The fancy moon going in little artist painting. Thirty days of
-              lavender in the dreamy light inside. Other perfect oh plants, for
-              and again. I’ve honey feeling. Caring dreamland projects
-              noteworthy than minimal, their it oh pretty feeling may. Include
-              pink be.
-            </p>
-            <p>
-              The fancy moon going in little artist painting. Thirty days of
-              lavender in the dreamy light inside. Other perfect oh plants, for
-              and again. I’ve honey feeling. Caring dreamland projects
-              noteworthy than minimal, their it oh pretty feeling may. Include
-              pink be.
-            </p>
-            <h3>Smaller heading</h3>
-            <Image
-              src={"/images/avatar.png"}
-              alt={"Anh test"}
-              height={400}
-              width={400}
-            />
-            <p>
-              The fancy moon going in little artist painting. Thirty days of
-              lavender in the dreamy light inside. Other perfect oh plants, for
-              and again. I’ve honey feeling. Caring dreamland projects
-              noteworthy than minimal, their it oh pretty feeling may. Include
-              pink be.
-            </p>
-            <p>
-              The fancy moon going in little artist painting. Thirty days of
-              lavender in the dreamy light inside. Other perfect oh plants, for
-              and again. I’ve honey feeling. Caring dreamland projects
-              noteworthy than minimal, their it oh pretty feeling may. Include
-              pink be.
-            </p>
           </div>
-          <LeftContent />
+          <LeftContent popularPost={blogPopular || []} />
         </div>
         <div className="w-full lg:w-2/3 my-6 flex flex-wrap gap-4">
-          {Array.from({ length: 6 }).map((_, index) => (
+          {(blog.tags || []).map((value, index) => (
             <div
               key={`Tag post ${index}`}
               className="px-5 py-3 cursor-pointer hover:-translate-y-2 transition-transform duration-300 ease-in-out rounded-[8px] border border-[#c2d4ee] dark:border-[#222f43] bg-[#e8edf5] dark:bg-[#131c31] text-[#0b1222] hover:text-[#1cc2e7] dark:text-[#fff]"
             >
-              #Nature
+              #{value.name}
             </div>
           ))}
         </div>
