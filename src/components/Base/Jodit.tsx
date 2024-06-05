@@ -9,7 +9,7 @@ const Jodit = ({ content, setContent, token }: any) => {
       readonly: false,
       enableDragAndDropFileToEditor: true,
       uploader: {
-        url: `${API_URL}/api/v1/upload`,
+        url: `${API_URL}/upload`,
         format: "json",
         method: "POST",
         queryBuild: function (data: any) {

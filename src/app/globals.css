@@ -361,12 +361,47 @@ header > nav {
   margin-bottom: 30px;
 }
 
+.content code {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+  background: rgba(0,0,0,0.03);
+}
+.content pre {
+  overflow: auto;
+  padding: 12px;
+  box-sizing: border-box;
+  border: none;
+  background: rgba(0,0,0,0.03);
+}
+.content pre code {
+  background: unset !important;
+  border: unset !important;
+  border-radius: unset !important;
+}
+
 .content-dark {
   color: #94a9c9 !important;
 }
 
 .content-dark h2 h3 {
   color: #b9e0f2 !important;
+}
+
+.content-dark code {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 4px;
+  background: rgba(228, 228, 228, 0.03);
+}
+
+.content-dark pre {
+  white-space: 'break-spaces';
+  background: rgba(228, 228, 228, 0.74) !important;
+}
+
+.content-dark pre code {
+  background: unset !important;
+  border: unset !important;
+  border-radius: unset !important;
 }
 
 /* Nav mobile */

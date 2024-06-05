@@ -4,6 +4,8 @@ import LeftContent from "@/components/LeftContent";
 import ButtonLiner from "@/components/ui/button-liner";
 import { getBlog, getBlogs, getBlogsPopular } from "@/services/blog";
 import { Blog } from "@/types/Blog";
+import { srcImage } from "@/utils/image";
+import Image from "next/image";
 import Link from "next/link";
 
 export async function generateStaticParams() {
@@ -39,6 +41,7 @@ export default async function Article({
         <p className="text-[30px] sm:text-[45px] lg:w-3/4 font-bold mb-5 text-left text-linear mt-[50px]">
           {blog.title}
         </p>
+
         <div className="sm:flex">
           <div className="sm:w-3/4 sm:border-r border-[#c2d4ee] dark:border-[#222f43] py-3 sm:mr-4">
             <Author />
@@ -127,8 +130,15 @@ export default async function Article({
             </div>
           </div>
         </div>
+
         <div className="lg:flex mt-[50px]">
           <div className="content lg:w-2/3 w-full dark:content-dark border-b border-[#c2d4ee] dark:border-[#222f43]">
+            <Image
+              alt={blog.title}
+              src={srcImage(blog?.featuredMedia)}
+              width={500}
+              height={500}
+            />
             <div
               dangerouslySetInnerHTML={{
                 __html: blog.content || "",
