@@ -110,7 +110,7 @@ export function NavigationMenuMain({ categories }: { categories: Category[] }) {
                   {value.description}
                 </ListItem>
               ))}
-              <ListItem title="See more" href={"/category"}>
+              <ListItem title="See more" href={"/categories"}>
                 Explore additional resources and documentation for expanding
                 your knowledge.
               </ListItem>

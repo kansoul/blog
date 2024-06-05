@@ -1,7 +1,7 @@
 import { clientApi, serverApi } from "./api";
 
-export const getTags = async () => {
-  const result = await serverApi("tags", "GET");
+export const getTags = async (noCache?: boolean) => {
+  const result = await serverApi("tags", "GET", null, noCache);
   return result;
 };
 

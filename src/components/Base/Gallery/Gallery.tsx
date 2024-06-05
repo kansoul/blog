@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
-import { API_URL, APP_URL } from "@/config";
-import { useSession } from "next-auth/react";
-import { useState, useEffect } from "react";
-import { Media } from "@/types/Media";
+import { API_URL } from "@/config";
 import { getAllMedia } from "@/services/media";
+import { Media } from "@/types/Media";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Gallery(props: { setMediaId: any; closeGallery: any }) {
   const { setMediaId, closeGallery } = props;

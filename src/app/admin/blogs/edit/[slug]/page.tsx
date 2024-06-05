@@ -1,6 +1,5 @@
 "use client";
 import CreateUpdateBlog from "@/components/CreateUpdateBlog";
-import { APP_URL } from "@/config";
 import { getBlog } from "@/services/blog";
 import { Blog } from "@/types/Blog";
 import { useSession } from "next-auth/react";

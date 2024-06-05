@@ -1,4 +1,4 @@
-import { clientApi, serverApi } from "./api";
+import { clientApi } from "./api";
 
 export const getAllMedia = async (token: string) => {
   const result = await clientApi("media", "GET", token);

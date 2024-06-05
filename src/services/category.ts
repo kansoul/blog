@@ -1,12 +1,12 @@
 import { clientApi, serverApi } from "./api";
 
-export const getCategories = async () => {
-  const result = await serverApi("categories", "GET");
+export const getCategories = async (noCache?: boolean) => {
+  const result = await serverApi("categories", "GET", null, noCache);
   return result;
 };
 
-export const getCategory = async (slug: string) => {
-  const result = await serverApi(`category/${slug}`, "GET");
+export const getCategory = async (slug: string, noCache?: boolean) => {
+  const result = await serverApi(`category/${slug}`, "GET", null, noCache);
   return result;
 };
 

@@ -2,11 +2,18 @@ import Author from "@/components/Base/Author";
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import LeftContent from "@/components/LeftContent";
 import ButtonLiner from "@/components/ui/button-liner";
+import { APP_URL } from "@/config";
 import { getBlog, getBlogs, getBlogsPopular } from "@/services/blog";
 import { Blog } from "@/types/Blog";
 import { srcImage } from "@/utils/image";
+import { ResolvingMetadata, Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+
+type Props = {
+  params: { slug: string };
+};
 
 export async function generateStaticParams() {
   const posts = await getBlogs();
@@ -16,12 +23,36 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const blog: Blog = await getBlog(params.slug);
+  const siteURL = APP_URL;
+  return {
+    metadataBase: new URL(APP_URL as string),
+    title: blog?.title,
+    description: blog?.description,
+    openGraph: {
+      siteName: "Ho Doan IT",
+      title: blog?.title,
+      images: srcImage(blog?.featuredMedia) || "/images/avatar.png",
+      description: blog?.description,
+      authors: [`Ho Doan`],
+    },
+    alternates: {
+      canonical: `${siteURL}/${blog?.slug}`,
+    },
+  };
+}
+
 export default async function Article({
   params,
 }: {
   params: { slug: string };
 }) {
   const blog: Blog = await getBlog(params.slug);
+  if (!blog) notFound();
   const blogPopular: Blog[] = await getBlogsPopular();
   let commentList = [
     "White white dreamy drama tically place everything although. Place out apartment afternoon whimsical kinder, little romantic joy we flowers handmade.",

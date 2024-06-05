@@ -1,6 +1,5 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import { ThemeProvider } from "@/components/theme-provider";
+import { APP_URL } from "@/config";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -8,11 +7,18 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Ho Doan IT",
-  metadataBase: new URL("https://www.hodoanit.com/"),
-  description: "Basic to advanced programming knowledge",
+  title: "Ho Doan IT - Basic to advanced programming knowledge",
+  metadataBase: new URL(APP_URL as string),
+  description:
+    "This is a website created by Ho Doan, a website that shares useful information about programming and life.",
   openGraph: {
+    siteName: "Ho Doan IT",
     images: "/images/avatar.png",
+    title: "Ho Doan IT - Basic to advanced programming knowledge",
+    type: "website",
+    url: new URL(APP_URL as string),
+    description:
+      "This is a website created by Ho Doan, a website that shares useful information about programming and life.",
   },
 };
 

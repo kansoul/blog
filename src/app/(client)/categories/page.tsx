@@ -5,9 +5,9 @@ import { Category } from "@/types/Category";
 import { srcImage } from "@/utils/image";
 import Link from "next/link";
 
-export default async function Blogs() {
+export default async function Categories() {
   const categories: Category[] = await getCategories();
-  const breads = [{ value: "Blogs", url: `/blog` }];
+  const breads = [{ value: "Categories", url: `/categories` }];
   return (
     <div className="container flex flex-row color-home">
       <div className="w-0 xl:w-1/12"></div>
@@ -51,7 +51,7 @@ export default async function Blogs() {
                     size={"L"}
                     srcImage={srcImage(val?.featuredMedia)}
                     cardTitle={val.title}
-                    url={val.slug}
+                    url={`/${val.slug}`}
                     cardTag={[]}
                   />
                 ))}

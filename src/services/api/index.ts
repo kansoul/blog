@@ -2,7 +2,12 @@ import { API_URL } from "@/config";
 
 type METHOD = "GET" | "POST" | "PUT" | "DELETE";
 
-export const serverApi = async (router: string, method: METHOD, data?: any) => {
+export const serverApi = async (
+  router: string,
+  method: METHOD,
+  data?: any,
+  noCache?: boolean
+) => {
   try {
     const response = await fetch(`${API_URL}/${router}`, {
       cache: "no-cache",
@@ -11,6 +16,7 @@ export const serverApi = async (router: string, method: METHOD, data?: any) => {
         "Content-Type": "application/json",
       },
       ...(data && { body: JSON.stringify(data) }),
+      ...(noCache && { cache: "no-cache" }),
     });
     const result = await response.json();
     return result?.data;

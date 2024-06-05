@@ -9,28 +9,24 @@ interface props {
 
 const menuList: { title: string; href: string }[] = [
   {
-    title: "ReactJS",
-    href: "/category",
+    title: "Home",
+    href: "/",
   },
   {
-    title: "NextJS",
-    href: "/category",
+    title: "About Me",
+    href: "/about",
   },
   {
-    title: "Laravel",
-    href: "/category",
+    title: "Categories",
+    href: "/categories",
   },
   {
-    title: "Flutter",
-    href: "/category",
+    title: "Services",
+    href: "/",
   },
   {
-    title: "Frameworks CSS",
-    href: "/category",
-  },
-  {
-    title: "See more",
-    href: "/blogs",
+    title: "Contact",
+    href: "/contact",
   },
 ];
 

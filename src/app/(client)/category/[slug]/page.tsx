@@ -1,11 +1,18 @@
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import ContentCards from "@/components/Base/ContentCards";
-import Pagination from "@/components/Base/Pagination";
 import PopularTag from "@/components/PopularTag";
+import { APP_URL } from "@/config";
 import { getBlogsByCategory } from "@/services/blog";
 import { getCategories, getCategory } from "@/services/category";
 import { getTags } from "@/services/tag";
 import { Category as CategoryType } from "@/types/Category";
+import { srcImage } from "@/utils/image";
+import { Metadata, ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
+
+type Props = {
+  params: { slug: string };
+};
 
 export async function generateStaticParams() {
   const categories = await getCategories();
@@ -15,12 +22,35 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const category: CategoryType = await getCategory(params.slug);
+  const siteURL = APP_URL;
+  return {
+    metadataBase: new URL(APP_URL as string),
+    title: category?.name,
+    description: category?.description,
+    openGraph: {
+      siteName: "Ho Doan IT",
+      title: category?.name,
+      images: srcImage(category?.featuredMedia) || "/images/avatar.png",
+      description: category?.description,
+    },
+    alternates: {
+      canonical: `${siteURL}/category/${category?.slug}`,
+    },
+  };
+}
+
 export default async function Category({
   params,
 }: {
   params: { slug: string };
 }) {
   const category: CategoryType = await getCategory(params.slug);
+  if (!category) notFound();
   const breads = [{ value: category.name, url: `/${category.slug}` }];
   const posts = await getBlogsByCategory(category._id);
   const tags = await getTags();
