@@ -7,7 +7,7 @@ import { MetadataRoute } from "next";
 
 export async function generateSitemaps() {
   const categories = await getCategories();
-  return categories.map((category: any) => ({
+  return categories.map((category: Category) => ({
     id: category?.slug,
   }));
 }
