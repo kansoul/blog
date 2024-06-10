@@ -22,7 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         | "monthly"
         | "never"
         | undefined,
-      priority: (index + blogs.length) / blogs.length,
+      priority: 0.9,
     };
     return data;
   });
@@ -39,7 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         | "monthly"
         | "never"
         | undefined,
-      priority: (index + 1) / (categories.length + blogs.length),
+      priority: 0.8,
     };
     return data;
   });
@@ -50,8 +50,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: siteUrl,
       lastModified: new Date(),
-      changeFrequency: "yearly",
+      changeFrequency: "daily",
       priority: 1,
+    },
+    {
+      url: `${siteUrl}/categories`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/contact`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${siteUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
     },
   ];
 }
