@@ -1,5 +1,25 @@
 import Introduce from "@/components/Introduce";
+import { APP_URL } from "@/config";
+import { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Ho Doan IT - About",
+  metadataBase: new URL(APP_URL as string),
+  robots: {
+    index: true,
+    follow: true,
+  },
+  description: "About me",
+  openGraph: {
+    siteName: "Ho Doan IT - About",
+    images: "/images/avatar.png",
+    title: "Ho Doan IT - About me",
+    type: "website",
+    url: new URL(APP_URL as string),
+    description: "About me",
+  },
+};
 
 export default function About() {
   const skillComponents = [

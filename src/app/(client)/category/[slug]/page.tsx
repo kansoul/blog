@@ -31,6 +31,10 @@ export async function generateMetadata(
   return {
     metadataBase: new URL(APP_URL as string),
     title: category?.name,
+    robots: {
+      index: true,
+      follow: true,
+    },
     description: category?.description,
     openGraph: {
       siteName: "Ho Doan IT",

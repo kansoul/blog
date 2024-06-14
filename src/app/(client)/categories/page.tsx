@@ -1,9 +1,29 @@
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import CardBlog from "@/components/ui/card-blog";
+import { APP_URL } from "@/config";
 import { getCategories } from "@/services/category";
 import { Category } from "@/types/Category";
 import { srcImage } from "@/utils/image";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Ho Doan IT - Categories",
+  metadataBase: new URL(APP_URL as string),
+  robots: {
+    index: true,
+    follow: true,
+  },
+  description: "Categories",
+  openGraph: {
+    siteName: "Ho Doan IT - Categories of Ho Doan IT",
+    images: "/images/avatar.png",
+    title: "Ho Doan IT - Categories of Ho Doan IT",
+    type: "website",
+    url: new URL(APP_URL as string),
+    description: "Categories of Ho Doan IT",
+  },
+};
 
 export default async function Categories() {
   const categories: Category[] = await getCategories();

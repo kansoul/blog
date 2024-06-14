@@ -1,5 +1,25 @@
 import ButtonLiner from "@/components/ui/button-liner";
+import { APP_URL } from "@/config";
+import { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Ho Doan IT - Contact",
+  metadataBase: new URL(APP_URL as string),
+  robots: {
+    index: true,
+    follow: true,
+  },
+  description: "Contact me via Ho Doan IT",
+  openGraph: {
+    siteName: "Ho Doan IT - Contact",
+    images: "/images/avatar.png",
+    title: "Ho Doan IT - Feel free to contact me!",
+    type: "website",
+    url: new URL(APP_URL as string),
+    description: "Contact me via Ho Doan IT",
+  },
+};
 
 export default function Contact() {
   return (

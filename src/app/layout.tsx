@@ -9,6 +9,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Ho Doan IT - Basic to advanced programming knowledge",
   metadataBase: new URL(APP_URL as string),
+  robots: {
+    index: true,
+    follow: true,
+  },
   description:
     "This is a website created by Ho Doan, a website that shares useful information about programming and life.",
   openGraph: {
