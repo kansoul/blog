@@ -10,7 +10,6 @@ export const serverApi = async (
 ) => {
   try {
     const response = await fetch(`${API_URL}/${router}`, {
-      cache: "no-cache",
       method: method,
       headers: {
         "Content-Type": "application/json",
