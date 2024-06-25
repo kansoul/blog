@@ -1,8 +1,9 @@
 import { ThemeProvider } from "@/components/theme-provider";
-import { APP_URL } from "@/config";
+import { APP_PID, APP_URL } from "@/config";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import GoogleAdsense from "@/components/GoogleAdsen";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <GoogleAdsense pId={APP_PID || ''} />
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
