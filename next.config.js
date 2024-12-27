@@ -13,7 +13,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "api.hodoanit.com",
+        hostname: "api.hovandoan.com",
         pathname: "**",
       },
     ],

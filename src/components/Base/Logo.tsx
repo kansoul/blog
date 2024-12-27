@@ -25,14 +25,14 @@ export default function Logo(props: { size: "L" | "XL" }) {
         src="/logo.svg"
         width={sizeOfLogo[props.size]["imageSize"]}
         height={sizeOfLogo[props.size]["imageSize"]}
-        alt="HoDoanIT Logo"
+        alt="Ho Van Doan Logo"
       />
       <p
         className={`self-center text-xl font-black text-[#4a576a] whitespace-nowrap dark:text-[#d8e6fb] ml-1 ${
           sizeOfLogo[props.size]["textSize"]
         }`}
       >
-        HoDoanIT
+        HoVanDoan
       </p>
     </Link>
   );

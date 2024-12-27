@@ -96,7 +96,7 @@ export default function Footer({ categories }: { categories: Category[] }) {
             <span className="text-[#344161] dark:text-[#B9E0F2]">
               © 2024 Remade by{" "}
             </span>
-            <span className="text-[#1CC2E7]">HoDoanIT.com</span>
+            <span className="text-[#1CC2E7]">HoVanDoan.com</span>
           </div>
           <div className="flex">
             <Link

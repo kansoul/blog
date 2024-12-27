@@ -3,6 +3,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Login from "@/components/Header/Login";
+import { APP_URL } from "@/config";
 import { SessionProvider } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -40,7 +41,7 @@ export default function AdminLayout({
                   />
                 </svg>
               </button>
-              <a href="https://hodoanit.com" className="flex ms-2 md:me-24">
+              <Link href={APP_URL || ""} className="flex ms-2 md:me-24">
                 <Image
                   src="/logo.svg"
                   height={32}
@@ -49,9 +50,9 @@ export default function AdminLayout({
                   alt="Ho Doan IT Logo"
                 />
                 <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                  HoDoanIT
+                  HoVanDoan
                 </span>
-              </a>
+              </Link>
             </div>
             <div className="flex items-center">
               <div className="flex items-center ms-3">
